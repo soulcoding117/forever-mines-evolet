@@ -4026,6 +4026,268 @@
         transform: none !important;
       }
     }
+
+      /* =========================================================
+     🎁 BOTTOM LETTER POP-UP — appears at the very bottom
+     ========================================================= */
+  .bottom-letter-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 950;
+    display: grid;
+    place-items: center;
+    padding: 20px;
+    background: rgba(15, 2, 12, 0.78);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.9s ease, visibility 0.9s ease;
+  }
+
+  .bottom-letter-popup.open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .bottom-letter-inner {
+    position: relative;
+    max-width: 640px;
+    width: 100%;
+    max-height: 88vh;
+    overflow-y: auto;
+    padding: 54px 44px 40px;
+    border-radius: 30px;
+    background:
+      radial-gradient(ellipse 90% 55% at 50% 0%, rgba(255, 240, 215, 0.55), transparent 70%),
+      radial-gradient(ellipse 70% 60% at 8% 115%, rgba(172, 112, 255, 0.28), transparent 70%),
+      radial-gradient(ellipse 70% 60% at 96% 88%, rgba(255, 130, 185, 0.20), transparent 70%),
+      linear-gradient(165deg, #2a0a1e 0%, #3a1030 40%, #1f0818 72%, #0f040e 100%);
+    border: 1px solid rgba(255, 214, 150, 0.38);
+    box-shadow:
+      0 50px 120px -30px rgba(0, 0, 0, 0.95),
+      0 0 0 1px rgba(255, 236, 190, 0.12),
+      0 0 140px rgba(232, 185, 106, 0.14),
+      inset 0 0 140px rgba(255, 195, 120, 0.06);
+    color: #f3e3d2;
+    transform: scale(0.9) translateY(30px);
+    transition: transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1.3);
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255, 214, 150, 0.4) transparent;
+  }
+  .bottom-letter-inner::-webkit-scrollbar { width: 8px; }
+  .bottom-letter-inner::-webkit-scrollbar-track { background: transparent; }
+  .bottom-letter-inner::-webkit-scrollbar-thumb {
+    background: rgba(255, 214, 150, 0.35);
+    border-radius: 999px;
+  }
+
+  .bottom-letter-popup.open .bottom-letter-inner {
+    transform: scale(1) translateY(0);
+  }
+
+  /* Sparkle layer behind the letter */
+  .bottom-letter-inner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.4px 1.4px at 12% 18%, rgba(255, 240, 210, 0.75), transparent),
+      radial-gradient(1.2px 1.2px at 78% 8%,  rgba(255, 240, 210, 0.55), transparent),
+      radial-gradient(1.6px 1.6px at 88% 42%, rgba(255, 240, 210, 0.65), transparent),
+      radial-gradient(1.2px 1.2px at 20% 82%, rgba(255, 240, 210, 0.45), transparent),
+      radial-gradient(1.3px 1.3px at 62% 92%, rgba(255, 240, 210, 0.50), transparent);
+    animation: bottomLetterTwinkle 6s ease-in-out infinite alternate;
+    border-radius: 30px;
+    z-index: 0;
+  }
+  @keyframes bottomLetterTwinkle {
+    from { opacity: 0.45; }
+    to   { opacity: 1; }
+  }
+
+  .bottom-letter-inner > * { position: relative; z-index: 1; }
+
+  /* X button */
+  .bottom-letter-close {
+    position: absolute;
+    top: 18px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 220, 150, 0.35);
+    background: rgba(20, 6, 20, 0.4);
+    color: #ffe6ae;
+    font-size: 1.15rem;
+    font-family: inherit;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    z-index: 3;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: transform 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+  }
+  .bottom-letter-close:hover {
+    background: rgba(255, 200, 130, 0.25);
+    border-color: rgba(255, 220, 150, 0.9);
+    transform: scale(1.08) rotate(90deg);
+  }
+
+  /* header */
+  .bottom-letter-ornament {
+    color: var(--gold);
+    letter-spacing: 0.9em;
+    font-size: 0.7rem;
+    text-align: center;
+    margin-bottom: 14px;
+    padding-left: 0.9em;
+    animation: bottomOrn 4s ease-in-out infinite alternate;
+  }
+  @keyframes bottomOrn {
+    from { opacity: 0.55; letter-spacing: 0.9em; }
+    to   { opacity: 1;   letter-spacing: 1.15em; }
+  }
+
+  .bottom-letter-meta {
+    text-align: center;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: #f0c674;
+    margin-bottom: 8px;
+  }
+
+  .bottom-letter-title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: clamp(1.9rem, 5.5vw, 2.6rem);
+    line-height: 1.15;
+    text-align: center;
+    margin-bottom: 28px;
+    background: linear-gradient(100deg, #c98f3c 0%, #ffeec2 25%, #f3cd85 50%, #ffeec2 75%, #c98f3c 100%);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 7s linear infinite;
+    filter: drop-shadow(0 2px 16px rgba(255, 200, 120, 0.35));
+  }
+
+  /* body text */
+  .bottom-letter-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.02rem, 2.6vw, 1.18rem);
+    line-height: 2;
+    color: #efdcc9;
+    letter-spacing: 0.012em;
+    text-align: left;
+  }
+  .bottom-letter-body p {
+    margin-bottom: 20px;
+  }
+  .bottom-letter-body p:last-child { margin-bottom: 0; }
+  .bottom-letter-body strong {
+    font-weight: 600;
+    color: #ffe6ae;
+  }
+  .bottom-letter-body em {
+    font-style: italic;
+    color: #ffd9a4;
+  }
+
+  .bottom-letter-body .bottom-letter-signal {
+    padding: 18px 22px;
+    margin: 26px 0 !important;
+    border-left: 3px solid #f0c674;
+    border-right: 3px solid #f0c674;
+    border-radius: 12px;
+    background: rgba(255, 210, 140, 0.08);
+    color: #ffe4b6;
+    text-align: center;
+    font-size: 1.04em;
+    box-shadow: 0 0 30px rgba(232, 185, 106, 0.15);
+  }
+
+  .bottom-letter-body .bottom-letter-kicker {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.06em;
+    color: #ffd9a4;
+    text-shadow: 0 0 20px rgba(255, 190, 110, 0.35);
+    margin-top: 26px !important;
+    line-height: 1.85;
+  }
+
+  .bottom-letter-body .bottom-letter-sign {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.6rem;
+    color: #f0c674;
+    text-align: right;
+    margin-top: 34px !important;
+    padding-right: 6px;
+    text-shadow: 0 0 20px rgba(255, 200, 120, 0.35);
+  }
+
+  /* close button at the bottom */
+  .bottom-letter-btn {
+    display: block;
+    margin: 32px auto 0;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #fff;
+    background: linear-gradient(135deg, #c98f3c, #ffe6a8 45%, #c98f3c);
+    background-size: 200% auto;
+    border: none;
+    border-radius: 999px;
+    padding: 14px 36px;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    box-shadow: 0 16px 42px -14px rgba(232, 185, 106, 0.85);
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.4),
+                background-position 0.6s ease,
+                box-shadow 0.3s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .bottom-letter-btn:hover {
+    transform: translateY(-3px) scale(1.05);
+    background-position: 100% center;
+    box-shadow: 0 22px 50px -14px rgba(255, 220, 150, 1);
+  }
+
+  @media (max-width: 620px) {
+    .bottom-letter-inner {
+      padding: 44px 22px 30px;
+      max-height: 92vh;
+      border-radius: 24px;
+    }
+    .bottom-letter-close {
+      top: 12px;
+      right: 12px;
+      width: 36px;
+      height: 36px;
+    }
+    .bottom-letter-body {
+      font-size: 1.02rem;
+      line-height: 1.9;
+    }
+    .bottom-letter-body .bottom-letter-sign {
+      font-size: 1.35rem;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .bottom-letter-inner::before,
+    .bottom-letter-ornament { animation: none !important; }
+  }
   </style>
 </head>
 
@@ -5721,6 +5983,72 @@
     </div>
   </div>
 
+    <!-- ============================================================
+       🎁 BOTTOM LETTER POP-UP — appears when scrolled to the very bottom
+       ============================================================ -->
+  <div class="bottom-letter-popup" id="bottomLetterPopup" aria-hidden="true">
+    <div class="bottom-letter-inner" role="dialog" aria-modal="true" aria-labelledby="bottomLetterTitle">
+
+      <button class="bottom-letter-close" id="bottomLetterClose" type="button" aria-label="Cerrar">✕</button>
+
+      <div class="bottom-letter-ornament">✦ ✦ ✦</div>
+      <p class="bottom-letter-meta">Un capítulo más</p>
+      <h3 class="bottom-letter-title" id="bottomLetterTitle">Antes de que te vayas…</h3>
+
+      <div class="bottom-letter-body">
+
+        <p><strong>Holaaa mi amor!!!</strong></p>
+
+        <p>
+          Me alegro que ya hayas despertado — y sí, a propósito apagué mi
+          conexión al internet. Solo así, y únicamente así, podría escribirte
+          todo esto sin que me distraiga.
+        </p>
+
+        <p>
+          Tus mensajes y llamadas son lo que más espero en el día. Con esto
+          te quiero decir que <em>hasta aquí llegó el fin de esta página</em>.
+          Nomás quiero que sepas que te amo con todo el alma, y espero
+          entiendas por qué decidí mover todo a otra página.
+        </p>
+
+        <p>
+          Ya se han terminado las 4 temporadas que te mencioné — fueron bonitas
+          mientras estuvieron, porque en todas estabas presente. En ninguna te
+          fallaste. Y por eso, mi amor, te amo con toda mi vida. En serio, en
+          tan poco tiempo me enamoré profundamente de ti. A este punto ya no
+          veo un futuro sin ti.
+        </p>
+
+        <p>
+          Hemos pasado por tantas que en serio sería tonto dejar ir a este
+          punto. Sin ti no la armo, mi amor.
+        </p>
+
+        <p class="bottom-letter-signal">
+          ➜ De aquí ya procede otro capítulo, que me la he estado aguantando.<br>
+          En serio, mi amor, gracias por todo.
+        </p>
+
+        <p class="bottom-letter-kicker">
+          De aquí hasta que estés en llamada conmigo — entras a verlo.<br>
+          No entres si no estamos en llamada, porque aquella parte te la voy a leer. 💕
+        </p>
+
+        <p class="bottom-letter-sign">
+          Con todo mi amor,<br>
+          Wilber 💫
+        </p>
+
+      </div>
+
+      <button class="bottom-letter-btn" id="bottomLetterBtn" type="button">Leer el capítulo dos →</button>
+    </div>
+  </div>
+
+  <!-- Sentinel — the pop-up triggers when this tiny element enters the viewport -->
+  <div id="bottomLetterSentinel" aria-hidden="true" style="height:1px;"></div>
+
   <script>
     /* =========================================================
        1. FLOATING BACKGROUND HEARTS
@@ -6791,6 +7119,71 @@
         });
       }
     })();
+
+      /* =========================================================
+     19. BOTTOM LETTER POP-UP — appears only at the very bottom
+     ========================================================= */
+  (function initBottomLetter() {
+    const popup    = document.getElementById('bottomLetterPopup');
+    const sentinel = document.getElementById('bottomLetterSentinel');
+    const closeX   = document.getElementById('bottomLetterClose');
+    const closeBtn = document.getElementById('bottomLetterBtn');
+    if (!popup || !sentinel) return;
+
+    let alreadyShown = false;
+
+    function openPopup() {
+      if (alreadyShown) return;
+      if (popup.classList.contains('open')) return;
+      alreadyShown = true;
+      popup.classList.add('open');
+      popup.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      if (navigator.vibrate) navigator.vibrate([20, 40, 20]);
+    }
+
+    function closePopup() {
+      popup.classList.remove('open');
+      popup.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    /* X button and "Cerrar por ahora" button both close it */
+    if (closeX)   closeX.addEventListener('click', closePopup);
+        if (closeBtn) closeBtn.addEventListener('click', () => {
+      /* Instead of just closing, go to the second page */
+      window.location.href = 'capitulo-dos.html';
+    });
+
+    /* Click on the dark backdrop to close */
+    popup.addEventListener('click', (e) => {
+      if (e.target === popup) closePopup();
+    });
+
+    /* Escape key closes it */
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && popup.classList.contains('open')) closePopup();
+    });
+
+    /* Watch the sentinel at the very bottom of the page.
+       When it enters the viewport, open the pop-up. */
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) openPopup();
+        });
+      }, { threshold: 0.5 });
+      io.observe(sentinel);
+    } else {
+      /* Fallback for ancient browsers */
+      window.addEventListener('scroll', () => {
+        const atBottom =
+          window.innerHeight + window.scrollY >=
+          document.documentElement.scrollHeight - 40;
+        if (atBottom) openPopup();
+      }, { passive: true });
+    }
+  })();
   </script>
 </body>
 
