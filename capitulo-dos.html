@@ -460,6 +460,126 @@
     z-index: 2;
   }
 
+  /* Music hint under the footer */
+  .music-hint {
+    text-align: center;
+    margin-top: 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: #d3a7bf;
+    position: relative;
+    z-index: 2;
+  }
+  .music-hint .note {
+    color: #ffd79a;
+    font-size: 1rem;
+    text-shadow: 0 0 14px rgba(255, 200, 130, 0.65);
+  }
+
+  /* =========================================================
+     MUSIC BUTTON — matches the "For Evolet" index page style
+     ========================================================= */
+  .music-btn {
+    position: fixed;
+    bottom: 22px;
+    right: 22px;
+    z-index: 500;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 220, 150, 0.55);
+    background: linear-gradient(145deg, rgba(60, 15, 55, 0.9), rgba(30, 8, 28, 0.95));
+    color: #ffe6ae;
+    font-size: 1.4rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow:
+      0 12px 30px -10px rgba(0, 0, 0, 0.7),
+      0 0 0 4px rgba(255, 210, 130, 0.08);
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.4),
+      box-shadow 0.3s ease, background 0.3s ease,
+      opacity 0.6s ease;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .music-btn:hover {
+    transform: scale(1.08);
+    box-shadow:
+      0 14px 36px -10px rgba(0, 0, 0, 0.8),
+      0 0 0 6px rgba(255, 210, 130, 0.14);
+  }
+
+  .music-btn:focus-visible {
+    outline: 2px solid #ffe6a8;
+    outline-offset: 4px;
+  }
+
+  .music-btn .music-icon {
+    display: inline-block;
+    line-height: 1;
+    transform: translateY(-1px);
+  }
+
+  .music-btn.is-playing .music-icon {
+    animation: musicPulse 1.6s ease-in-out infinite;
+  }
+
+  @keyframes musicPulse {
+    0%, 100% {
+      transform: translateY(-1px) scale(1);
+      opacity: 0.95;
+    }
+    50% {
+      transform: translateY(-1px) scale(1.2);
+      opacity: 1;
+    }
+  }
+
+  .music-btn.is-playing::after {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 220, 150, 0.55);
+    animation: musicRing 1.8s ease-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes musicRing {
+    0% {
+      transform: scale(1);
+      opacity: 0.75;
+    }
+    100% {
+      transform: scale(1.7);
+      opacity: 0;
+    }
+  }
+
+  /* When autoplay is blocked, gently pulse to invite the tap */
+  .music-btn.is-pending {
+    animation: pendingPulse 2.2s ease-in-out infinite;
+  }
+  @keyframes pendingPulse {
+    0%, 100% {
+      box-shadow:
+        0 12px 30px -10px rgba(0, 0, 0, 0.7),
+        0 0 0 4px rgba(255, 210, 130, 0.08);
+      transform: scale(1);
+    }
+    50% {
+      box-shadow:
+        0 12px 34px -8px rgba(255, 200, 130, 0.85),
+        0 0 0 10px rgba(255, 210, 130, 0.18);
+      transform: scale(1.06);
+    }
+  }
+
   /* ---------- Responsive ---------- */
   @media (max-width: 620px) {
     .letter-page {
@@ -479,6 +599,13 @@
       border-radius: 18px;
     }
     .back-btn { padding: 14px 30px; font-size: 0.98rem; }
+    .music-btn {
+      width: 50px;
+      height: 50px;
+      bottom: 16px;
+      right: 16px;
+      font-size: 1.25rem;
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -487,7 +614,10 @@
     .ornament,
     .letter-page::before,
     .closing .sig-heart,
-    .nov-leaf { animation: none !important; }
+    .nov-leaf,
+    .music-btn .music-icon,
+    .music-btn.is-playing::after,
+    .music-btn.is-pending { animation: none !important; }
     .letter-body p { opacity: 1 !important; transform: none !important; }
     .nov-leaf { opacity: 0.5 !important; }
   }
@@ -675,6 +805,28 @@
     para leerlo juntos. 💫
   </p>
 
+  <p class="music-hint">
+    La música empieza solita — si tu navegador la pausa,
+    toca el botón <span class="note" aria-hidden="true">♪</span> o cualquier parte de la página.
+  </p>
+
+  <!-- ═══════════ YOUR LOCAL MP4 / MP3 MUSIC ═══════════
+       Put your file next to this HTML.
+       Primary:  tu-amo.mp3   (MP3 — best browser support)
+       Fallback: music.m4a    (MP4/M4A audio)
+       It auto-starts on page load. If the browser blocks
+       autoplay, it starts on the very first tap/scroll. -->
+  <audio id="bgMusic" loop preload="auto" playsinline>
+    <source src="tu-amo.mp3" type="audio/mpeg" />
+    <source src="music.m4a" type="audio/mp4" />
+  </audio>
+
+  <!-- ═══════════ MUSIC TOGGLE ═══════════ -->
+  <button class="music-btn" id="musicBtn" type="button"
+          aria-label="Reproducir música" aria-pressed="false" title="Música">
+    <span class="music-icon" aria-hidden="true">♪</span>
+  </button>
+
 <script>
   /* =========================================================
      1. STARFIELD
@@ -772,10 +924,119 @@
       paras.forEach((p) => p.classList.add('reveal'));
     }
 
-    /* Small safety net — reveal everything after 3s no matter what */
     setTimeout(() => {
       paras.forEach((p) => p.classList.add('reveal'));
     }, 3000);
+  })();
+
+  /* =========================================================
+     5. MUSIC — auto-plays YOUR local MP3/M4A on page load.
+        If the browser blocks autoplay with sound (most do
+        on first visit), it starts on the first interaction
+        anywhere on the page. The button stays in sync.
+     ========================================================= */
+  (function musicPlayer() {
+    const btn = document.getElementById('musicBtn');
+    const audio = document.getElementById('bgMusic');
+    if (!btn || !audio) return;
+
+    audio.volume = 0.75; // nice default, not too loud
+
+    let userPaused = false;   // true if the user deliberately paused
+    let gestureArmed = false; // whether we've attached the fallback listeners
+
+    function setPlayingUI(isPlaying) {
+      btn.classList.toggle('is-playing', isPlaying);
+      btn.classList.remove('is-pending');
+      btn.setAttribute('aria-pressed', isPlaying ? 'true' : 'false');
+      btn.setAttribute('aria-label', isPlaying ? 'Pausar música' : 'Reproducir música');
+      btn.title = isPlaying ? 'Pausar música' : 'Música';
+    }
+
+    /* -------- manual toggle -------- */
+    btn.addEventListener('click', () => {
+      if (audio.paused) {
+        userPaused = false;
+        const p = audio.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch((err) => console.warn('No se pudo reproducir la música:', err));
+        }
+      } else {
+        userPaused = true;
+        audio.pause();
+      }
+    });
+
+    /* -------- keep UI in sync with the actual audio -------- */
+    audio.addEventListener('play',  () => setPlayingUI(true));
+    audio.addEventListener('pause', () => setPlayingUI(false));
+    audio.addEventListener('ended', () => setPlayingUI(false));
+    audio.addEventListener('error', () => {
+      btn.classList.remove('is-playing', 'is-pending');
+      console.warn('No se encontró el archivo de música. Coloca "tu-amo.mp3" junto a este HTML.');
+    });
+
+    /* -------- autoplay attempt -------- */
+    function tryAutoplay() {
+      if (userPaused) return;
+
+      const p = audio.play();
+      if (p && typeof p.catch === 'function') {
+        p.then(() => {
+          /* success! audio 'play' event handles the UI */
+        }).catch(() => {
+          /* Blocked — invite the user to tap, and arm the
+             first-gesture fallback so music starts on its own. */
+          btn.classList.add('is-pending');
+          armGestureFallback();
+        });
+      }
+    }
+
+    /* -------- first-interaction fallback -------- */
+    const gestureEvents = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'];
+
+    function armGestureFallback() {
+      if (gestureArmed) return;
+      gestureArmed = true;
+
+      const startOnGesture = () => {
+        if (userPaused) {
+          cleanup();
+          return;
+        }
+        const p = audio.play();
+        if (p && typeof p.then === 'function') {
+          p.then(() => cleanup()).catch(() => { /* still blocked, keep waiting */ });
+        } else {
+          cleanup();
+        }
+      };
+
+      function cleanup() {
+        gestureEvents.forEach((ev) => {
+          window.removeEventListener(ev, startOnGesture, true);
+        });
+        gestureArmed = false;
+      }
+
+      gestureEvents.forEach((ev) => {
+        window.addEventListener(ev, startOnGesture, { passive: true, capture: true });
+      });
+    }
+
+    /* -------- kick things off -------- */
+    if (audio.readyState >= 2) {
+      tryAutoplay();
+    } else {
+      audio.addEventListener('loadeddata', tryAutoplay, { once: true });
+      audio.addEventListener('canplay',    tryAutoplay, { once: true });
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', tryAutoplay, { once: true });
+      } else {
+        tryAutoplay();
+      }
+    }
   })();
 </script>
 </body>
