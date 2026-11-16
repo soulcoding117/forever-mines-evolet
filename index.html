@@ -4292,6 +4292,112 @@
 </head>
 
 <body>
+  <!-- ═══════════ 404 GUARD — 72-hour lock, runs before anything else ═══════════ -->
+<script>
+(function () {
+  if (window.__evoletGuardRan) return;
+  window.__evoletGuardRan = true;
+
+  var FLAG_KEY = 'evolet-hasta-aqui-ended';
+  var WINDOW_MS = 72 * 60 * 60 * 1000; /* 72 horas */
+
+  /* ---- 1. Leer la fecha de finalización guardada ---- */
+  var raw = localStorage.getItem(FLAG_KEY);
+  if (!raw) return; /* No hay flag → página normal */
+
+  var endedAt = parseInt(raw, 10);
+
+  /* Si era el formato viejo ('1') o está corrupto → tratar como expirado */
+  if (!endedAt || isNaN(endedAt)) {
+    try { localStorage.removeItem(FLAG_KEY); } catch (e) {}
+    return;
+  }
+
+  /* ---- 2. Comprobar si ya pasaron las 72 horas ---- */
+  var elapsed = Date.now() - endedAt;
+  if (elapsed >= WINDOW_MS) {
+    /* Expirado → borrar flag y dejar cargar la página normal */
+    try { localStorage.removeItem(FLAG_KEY); } catch (e) {}
+    return;
+  }
+
+  /* ---- 3. Todavía dentro de las 72h → mostrar 404 ---- */
+
+  /* Bloquear cualquier audio para que no suene */
+  if (window.HTMLMediaElement && HTMLMediaElement.prototype.play) {
+    HTMLMediaElement.prototype.play = function () {
+      return Promise.reject(new Error('Evolet page ended'));
+    };
+  }
+
+  /* Ocultar la página al instante — sin parpadeos */
+  var hide = document.createElement('style');
+  hide.id = 'evolet-404-hide';
+  hide.textContent = 'html{visibility:hidden!important}body{background:#000!important}';
+  (document.head || document.documentElement).appendChild(hide);
+
+  var done = false;
+  function render404() {
+    if (done) return;
+    done = true;
+
+    try {
+      var auds = document.querySelectorAll('audio');
+      for (var i = 0; i < auds.length; i++) {
+        try { auds[i].pause(); } catch (e) {}
+        try { auds[i].removeAttribute('src'); } catch (e) {}
+        try { while (auds[i].firstChild) auds[i].removeChild(auds[i].firstChild); } catch (e) {}
+      }
+    } catch (e) {}
+
+    /* Mostrar cuánto falta para que se desbloquee (detalle bonito) */
+    var remaining = WINDOW_MS - elapsed;
+    var hoursLeft = Math.ceil(remaining / (60 * 60 * 1000));
+    var unlockNote = hoursLeft > 0
+      ? '<p style="font-family:Georgia,serif;font-style:italic;font-size:0.85rem;' +
+          'color:#8a6a7e;letter-spacing:0.06em;margin:22px 0 0 0;">' +
+          'Se desbloquea en ~' + hoursLeft + ' h</p>'
+      : '';
+
+    document.body.innerHTML =
+      '<div style="position:fixed;inset:0;z-index:99999;display:grid;place-items:center;' +
+        'background:radial-gradient(ellipse 70% 60% at 50% 40%,#0e040c 0%,#050208 65%,#000 100%);' +
+        'text-align:center;padding:24px;font-family:Georgia,serif;color:#f3e3d2;">' +
+        '<div style="max-width:480px;">' +
+          '<p style="color:rgba(232,185,106,0.6);letter-spacing:0.9em;font-size:0.72rem;' +
+            'padding-left:0.9em;margin:0 0 26px 0;">✦ ✦ ✦</p>' +
+          '<div style="font-family:sans-serif;font-weight:700;font-size:clamp(5rem,22vw,10rem);' +
+            'line-height:0.95;letter-spacing:0.04em;' +
+            'background:linear-gradient(100deg,#c98f3c,#ffeec2,#c98f3c);' +
+            'background-size:220% auto;-webkit-background-clip:text;background-clip:text;' +
+            '-webkit-text-fill-color:transparent;margin-bottom:24px;">404</div>' +
+          '<p style="font-size:clamp(1.05rem,2.8vw,1.25rem);line-height:1.8;' +
+            'color:#cfa9c0;letter-spacing:0.04em;margin:0 0 22px 0;">' +
+            'Esta página ya no existe.<br>' +
+            '<em style="color:#ffd9a4;font-style:italic;">Se fue con las palabras, se quedó solo el silencio.</em>' +
+          '</p>' +
+          '<span style="display:block;font-family:cursive;font-size:clamp(1.6rem,5vw,2.2rem);' +
+            'color:#ffe4b6;text-shadow:0 0 30px rgba(255,200,130,0.4);">— te amo, siempre —</span>' +
+          '<br><span style="display:inline-block;margin-top:22px;font-size:1.4rem;color:#ff7096;' +
+            'filter:drop-shadow(0 0 16px rgba(255,90,140,0.85));">❤</span>' +
+          unlockNote +
+        '</div>' +
+      '</div>';
+
+    document.body.style.cssText = 'margin:0;padding:0;background:#000;overflow:hidden;min-height:100vh;';
+    document.documentElement.style.visibility = '';
+    var hs = document.getElementById('evolet-404-hide');
+    if (hs) hs.remove();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', render404);
+  } else {
+    render404();
+  }
+})();
+</script>
+<!-- ═══════════ END 404 GUARD ═══════════ -->
 
   <!-- 🎵 BACKGROUND SONG -->
   <audio id="bgMusic" loop preload="auto" playsinline>
