@@ -3,48 +3,92 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Capítulo dos — para Evolet, con todo lo que soy." />
+<meta name="author" content="Wilber" />
+<meta name="theme-color" content="#2a0a1e" />
 <title>Capítulo Dos — Para Evolet 💫</title>
+
+<!-- ═══════════════ FONTS ═══════════════ -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<style>
-  * { box-sizing: border-box; margin: 0; padding: 0; }
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Dancing+Script:wght@600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-  :root {
-    --gold: #e8b96a;
-    --deep: #c9184a;
-    --plum: #8a1c4a;
+<style>
+  /* ============================================================
+     RESET
+     ============================================================ */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
   }
 
-  html { scroll-behavior: smooth; }
+  /* ============================================================
+     ROOT VARIABLES
+     ============================================================ */
+  :root {
+    --gold: #e8b96a;
+    --gold-soft: #f0c674;
+    --gold-deep: #c98f3c;
+    --deep: #c9184a;
+    --plum: #8a1c4a;
+    --cream: #ffeec2;
+    --rose: #ff7096;
+    --wine: #2a0a1e;
+    --wine-2: #3a1030;
+    --wine-3: #1f0818;
+    --night: #0f040e;
+    --ink: #f3e3d2;
+    --ink-soft: #efdcc9;
+    --ink-faint: #b98fa8;
+    --border-gold: rgba(255, 214, 150, 0.34);
+    --shadow-soft: 0 50px 120px -30px rgba(0, 0, 0, 0.9);
+  }
 
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+
+  /* ============================================================
+     BODY
+     ============================================================ */
   body {
     font-family: 'Quicksand', system-ui, -apple-system, sans-serif;
     min-height: 100vh;
     padding: clamp(24px, 4vw, 60px) 18px clamp(60px, 8vw, 100px);
-    color: #f3e3d2;
+    color: var(--ink);
     overflow-x: hidden;
     background:
       radial-gradient(ellipse 80% 55% at 50% -10%, rgba(255, 210, 140, 0.22), transparent 70%),
       radial-gradient(ellipse 70% 60% at 8% 115%, rgba(172, 112, 255, 0.22), transparent 70%),
       radial-gradient(ellipse 70% 60% at 96% 88%, rgba(255, 130, 185, 0.15), transparent 70%),
-      linear-gradient(165deg, #2a0a1e 0%, #3a1030 40%, #1f0818 72%, #0f040e 100%);
+      linear-gradient(165deg, var(--wine) 0%, var(--wine-2) 40%, var(--wine-3) 72%, var(--night) 100%);
     background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     position: relative;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Starfield behind the page */
+  /* ============================================================
+     STARFIELD
+     ============================================================ */
   .starfield {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
     overflow: hidden;
+    opacity: 1;
   }
+
   .star {
     position: absolute;
     width: 2px;
@@ -55,7 +99,9 @@
       0 0 4px rgba(255, 255, 255, 0.95),
       0 0 10px rgba(200, 220, 255, 0.6);
     animation: twinkle 3s ease-in-out infinite;
+    will-change: opacity, transform;
   }
+
   .star.big {
     width: 3px;
     height: 3px;
@@ -64,12 +110,22 @@
       0 0 16px rgba(200, 220, 255, 0.85),
       0 0 24px rgba(180, 200, 255, 0.4);
   }
+
+  .star.tiny {
+    width: 1px;
+    height: 1px;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.75);
+    opacity: 0.7;
+  }
+
   @keyframes twinkle {
     0%, 100% { opacity: 0.35; transform: scale(1); }
     50%      { opacity: 1;    transform: scale(1.35); }
   }
 
-  /* Soft floating orbs / dust */
+  /* ============================================================
+     DUST
+     ============================================================ */
   .dust {
     position: fixed;
     inset: 0;
@@ -77,6 +133,7 @@
     z-index: 0;
     overflow: hidden;
   }
+
   .dust span {
     position: absolute;
     top: -10%;
@@ -85,6 +142,7 @@
     animation: dustFall linear infinite;
     will-change: transform, opacity;
   }
+
   @keyframes dustFall {
     0%   { transform: translateY(-5vh) translateX(0) rotate(0deg); opacity: 0; }
     12%  { opacity: 0.75; }
@@ -92,7 +150,9 @@
     100% { transform: translateY(115vh) translateX(var(--drift, 0)) rotate(360deg); opacity: 0; }
   }
 
-  /* ---------- Letter card ---------- */
+  /* ============================================================
+     LETTER PAGE
+     ============================================================ */
   .letter-page {
     position: relative;
     z-index: 1;
@@ -103,21 +163,21 @@
       radial-gradient(ellipse 90% 55% at 50% 0%, rgba(255, 240, 215, 0.45), transparent 70%),
       radial-gradient(ellipse 70% 60% at 8% 115%, rgba(172, 112, 255, 0.22), transparent 70%),
       radial-gradient(ellipse 70% 60% at 96% 88%, rgba(255, 130, 185, 0.18), transparent 70%),
-      linear-gradient(165deg, #2a0a1e 0%, #3a1030 40%, #1f0818 72%, #0f040e 100%);
-    border: 1px solid rgba(255, 214, 150, 0.34);
+      linear-gradient(165deg, var(--wine) 0%, var(--wine-2) 40%, var(--wine-3) 72%, var(--night) 100%);
+    border: 1px solid var(--border-gold);
     box-shadow:
-      0 50px 120px -30px rgba(0, 0, 0, 0.9),
+      var(--shadow-soft),
       0 0 0 1px rgba(255, 236, 190, 0.12),
       0 0 140px rgba(232, 185, 106, 0.14),
       inset 0 0 140px rgba(255, 195, 120, 0.06);
     animation: letterIn 1.1s cubic-bezier(0.2, 0.9, 0.3, 1.25) both;
   }
+
   @keyframes letterIn {
     from { opacity: 0; transform: translateY(30px) scale(0.97); }
     to   { opacity: 1; transform: translateY(0) scale(1); }
   }
 
-  /* Sparkle field inside the letter */
   .letter-page::before {
     content: '';
     position: absolute;
@@ -134,14 +194,20 @@
     animation: innerTwinkle 6s ease-in-out infinite alternate;
     z-index: 0;
   }
+
   @keyframes innerTwinkle {
     from { opacity: 0.45; }
     to   { opacity: 1; }
   }
 
-  .letter-page > * { position: relative; z-index: 1; }
+  .letter-page > * {
+    position: relative;
+    z-index: 1;
+  }
 
-  /* ---------- Ornament + header ---------- */
+  /* ============================================================
+     ORNAMENT + META + TITLE + SUBTITLE
+     ============================================================ */
   .ornament {
     color: var(--gold);
     letter-spacing: 0.9em;
@@ -151,6 +217,7 @@
     padding-left: 0.9em;
     animation: ornPulse 4s ease-in-out infinite alternate;
   }
+
   @keyframes ornPulse {
     from { opacity: 0.55; letter-spacing: 0.9em; }
     to   { opacity: 1;   letter-spacing: 1.15em; }
@@ -163,7 +230,7 @@
     font-weight: 700;
     letter-spacing: 0.3em;
     text-transform: uppercase;
-    color: #f0c674;
+    color: var(--gold-soft);
     margin-bottom: 10px;
   }
 
@@ -182,7 +249,10 @@
     animation: shine 7s linear infinite;
     filter: drop-shadow(0 2px 18px rgba(255, 200, 120, 0.35));
   }
-  @keyframes shine { to { background-position: 200% center; } }
+
+  @keyframes shine {
+    to { background-position: 200% center; }
+  }
 
   .subtitle {
     text-align: center;
@@ -194,7 +264,9 @@
     margin-bottom: 34px;
   }
 
-  /* ---------- Golden rule divider ---------- */
+  /* ============================================================
+     GOLDEN RULE DIVIDER
+     ============================================================ */
   .rule {
     display: flex;
     align-items: center;
@@ -205,21 +277,30 @@
     color: var(--gold);
     font-size: 0.7rem;
   }
+
   .rule::before,
   .rule::after {
     content: '';
     flex: 1;
     height: 1px;
   }
-  .rule::before { background: linear-gradient(90deg, transparent, rgba(232, 185, 106, 0.75)); }
-  .rule::after  { background: linear-gradient(90deg, rgba(232, 185, 106, 0.75), transparent); }
 
-  /* ---------- Letter body ---------- */
+  .rule::before {
+    background: linear-gradient(90deg, transparent, rgba(232, 185, 106, 0.75));
+  }
+
+  .rule::after {
+    background: linear-gradient(90deg, rgba(232, 185, 106, 0.75), transparent);
+  }
+
+  /* ============================================================
+     LETTER BODY
+     ============================================================ */
   .letter-body {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(1.05rem, 2.7vw, 1.2rem);
     line-height: 2.05;
-    color: #efdcc9;
+    color: var(--ink-soft);
     letter-spacing: 0.012em;
     text-align: left;
   }
@@ -230,6 +311,7 @@
     transform: translateY(16px);
     transition: opacity 1.1s ease, transform 1.1s cubic-bezier(0.2, 0.8, 0.3, 1);
   }
+
   .letter-body p.reveal {
     opacity: 1;
     transform: none;
@@ -239,12 +321,12 @@
     font-weight: 600;
     color: #ffe6ae;
   }
+
   .letter-body em {
     font-style: italic;
     color: #ffd9a4;
   }
 
-  /* Big poetic "opening" line */
   .letter-body .opening {
     text-align: center;
     font-size: 1.1em;
@@ -254,12 +336,11 @@
     text-shadow: 0 0 24px rgba(255, 190, 110, 0.35);
   }
 
-  /* Highlighted "insight" line */
   .letter-body .insight {
     padding: 22px 24px;
     margin: 26px 0 !important;
-    border-left: 3px solid #f0c674;
-    border-right: 3px solid #f0c674;
+    border-left: 3px solid var(--gold-soft);
+    border-right: 3px solid var(--gold-soft);
     border-radius: 14px;
     background: rgba(255, 210, 140, 0.08);
     color: #ffe4b6;
@@ -269,7 +350,9 @@
     line-height: 1.9;
   }
 
-  /* Section ornament between paragraphs */
+  /* ============================================================
+     SECTION ORNAMENT
+     ============================================================ */
   .section-ornament {
     display: flex;
     align-items: center;
@@ -280,14 +363,25 @@
     color: #a86a88;
     font-size: 0.72rem;
   }
-  .section-ornament::before,
-  .section-ornament::after { content: ''; flex: 1; height: 1px; }
-  .section-ornament::before { background: linear-gradient(90deg, transparent, rgba(180, 110, 140, 0.6)); }
-  .section-ornament::after  { background: linear-gradient(90deg, rgba(180, 110, 140, 0.6), transparent); }
 
-  /* =========================================================
-     NOVEMBER CHAPTER — warm autumn interlude
-     ========================================================= */
+  .section-ornament::before,
+  .section-ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+  }
+
+  .section-ornament::before {
+    background: linear-gradient(90deg, transparent, rgba(180, 110, 140, 0.6));
+  }
+
+  .section-ornament::after {
+    background: linear-gradient(90deg, rgba(180, 110, 140, 0.6), transparent);
+  }
+
+  /* ============================================================
+     NOVEMBER
+     ============================================================ */
   .november {
     position: relative;
     overflow: hidden;
@@ -311,6 +405,7 @@
     z-index: 0;
     overflow: hidden;
   }
+
   .nov-leaf {
     position: absolute;
     top: -26px;
@@ -319,6 +414,7 @@
     will-change: transform, opacity;
     filter: drop-shadow(0 0 6px rgba(255, 160, 80, 0.35));
   }
+
   @keyframes leafFall {
     0%   { transform: translate3d(0, -30px, 0) rotate(0deg); opacity: 0; }
     12%  { opacity: 0.85; }
@@ -326,7 +422,10 @@
     100% { transform: translate3d(var(--drift, 0px), 460px, 0) rotate(240deg); opacity: 0; }
   }
 
-  .november > *:not(.nov-leaves) { position: relative; z-index: 1; }
+  .november > *:not(.nov-leaves) {
+    position: relative;
+    z-index: 1;
+  }
 
   .nov-label {
     font-family: 'Quicksand', sans-serif;
@@ -351,6 +450,7 @@
     margin-bottom: 18px !important;
     text-shadow: 0 0 34px rgba(255, 168, 88, 0.42);
   }
+
   .nov-quote .qm {
     display: block;
     font-size: 1.5em;
@@ -369,10 +469,611 @@
     margin-bottom: 0 !important;
   }
 
-  /* ---------- Closing section — signature block ---------- */
+  /* ============================================================
+     GRATITUDE
+     ============================================================ */
+  .gratitude {
+    position: relative;
+    overflow: hidden;
+    margin: 44px 0 30px;
+    padding: clamp(28px, 4.5vw, 42px) clamp(22px, 4vw, 36px);
+    border-radius: 22px;
+    border: 1px solid rgba(255, 214, 150, 0.22);
+    background:
+      radial-gradient(ellipse 120% 100% at 50% -15%, rgba(255, 200, 140, 0.10), transparent 70%),
+      radial-gradient(ellipse 120% 100% at 50% 120%, rgba(172, 112, 255, 0.10), transparent 70%),
+      linear-gradient(168deg, rgba(58, 16, 48, 0.55) 0%, rgba(42, 10, 30, 0.55) 55%, rgba(24, 8, 20, 0.62) 100%);
+    box-shadow:
+      0 0 60px rgba(255, 200, 120, 0.08),
+      inset 0 0 60px rgba(255, 200, 140, 0.05);
+  }
+
+  .gratitude::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.3px 1.3px at 8% 24%, rgba(255, 236, 200, 0.75), transparent),
+      radial-gradient(1.2px 1.2px at 92% 12%, rgba(255, 236, 200, 0.55), transparent),
+      radial-gradient(1.4px 1.4px at 78% 88%, rgba(255, 236, 200, 0.65), transparent),
+      radial-gradient(1.2px 1.2px at 22% 78%, rgba(255, 236, 200, 0.55), transparent),
+      radial-gradient(1.3px 1.3px at 55% 44%, rgba(255, 236, 200, 0.45), transparent);
+    animation: innerTwinkle 7s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+
+  .gratitude > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .gratitude-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    text-align: center;
+    margin-bottom: 20px;
+    padding-left: 0.42em;
+    text-shadow: 0 0 16px rgba(255, 200, 130, 0.35);
+  }
+
+  .gratitude-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.05rem, 2.8vw, 1.18rem);
+    line-height: 2;
+    color: #efdcc9;
+    text-align: left;
+    letter-spacing: 0.012em;
+  }
+
+  .gratitude-text p {
+    margin-bottom: 18px;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+
+  .gratitude-text p.reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .gratitude-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  .gratitude-text strong {
+    color: #ffe6ae;
+    font-weight: 600;
+  }
+
+  .gratitude-text em {
+    font-style: italic;
+    color: #ffd9a4;
+  }
+
+  .gratitude-signature {
+    text-align: center;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--gold-soft);
+    margin-top: 22px;
+    text-shadow: 0 0 22px rgba(255, 200, 130, 0.35);
+  }
+
+  /* ============================================================
+     NEVER TIRED
+     ============================================================ */
+  .never-tired {
+    position: relative;
+    overflow: hidden;
+    margin: 44px 0 30px;
+    padding: clamp(28px, 4.5vw, 42px) clamp(22px, 4vw, 36px);
+    border-radius: 22px;
+    border: 1px solid rgba(255, 190, 160, 0.28);
+    background:
+      radial-gradient(ellipse 130% 100% at 50% -15%, rgba(255, 170, 140, 0.14), transparent 70%),
+      radial-gradient(ellipse 120% 100% at 50% 120%, rgba(255, 100, 160, 0.12), transparent 70%),
+      linear-gradient(168deg, rgba(66, 16, 40, 0.58) 0%, rgba(44, 10, 28, 0.58) 55%, rgba(26, 8, 20, 0.64) 100%);
+    box-shadow:
+      0 0 70px rgba(255, 140, 170, 0.10),
+      inset 0 0 70px rgba(255, 160, 180, 0.05);
+  }
+
+  .never-tired::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.3px 1.3px at 10% 20%, rgba(255, 220, 200, 0.75), transparent),
+      radial-gradient(1.2px 1.2px at 90% 14%, rgba(255, 220, 200, 0.55), transparent),
+      radial-gradient(1.4px 1.4px at 76% 90%, rgba(255, 220, 200, 0.65), transparent),
+      radial-gradient(1.2px 1.2px at 20% 84%, rgba(255, 220, 200, 0.55), transparent),
+      radial-gradient(1.3px 1.3px at 52% 50%, rgba(255, 220, 200, 0.45), transparent);
+    animation: innerTwinkle 6.5s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+
+  .never-tired > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .never-tired .gratitude-label {
+    color: #ffb090;
+    text-shadow: 0 0 16px rgba(255, 150, 140, 0.4);
+  }
+
+  .never-tired .gratitude-signature {
+    color: #ffb090;
+    text-shadow: 0 0 22px rgba(255, 140, 160, 0.4);
+  }
+
+  .never-tired .rebel-heart {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    font-size: 1.4rem;
+    color: #ff7096;
+    filter: drop-shadow(0 0 14px rgba(255, 90, 140, 0.85));
+    animation: heartbeat 1.8s ease-in-out infinite;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  /* ============================================================
+     ARCHIVE
+     ============================================================ */
+  .archive {
+    position: relative;
+    margin: 48px 0 30px;
+    padding: clamp(30px, 5vw, 46px) clamp(22px, 4vw, 36px) clamp(28px, 4.5vw, 42px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 214, 150, 0.20);
+    background:
+      radial-gradient(ellipse 130% 100% at 50% -15%, rgba(255, 220, 160, 0.10), transparent 70%),
+      radial-gradient(ellipse 130% 100% at 50% 120%, rgba(180, 120, 255, 0.10), transparent 70%),
+      linear-gradient(170deg, rgba(44, 14, 38, 0.55) 0%, rgba(30, 10, 24, 0.55) 55%, rgba(18, 6, 16, 0.62) 100%);
+    box-shadow:
+      0 0 70px rgba(255, 200, 140, 0.08),
+      inset 0 0 60px rgba(255, 200, 140, 0.04);
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.2s ease, transform 1.2s cubic-bezier(0.2, 0.8, 0.3, 1);
+  }
+
+  .archive.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  .archive::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.2px 1.2px at 6% 20%, rgba(255, 236, 200, 0.65), transparent),
+      radial-gradient(1.2px 1.2px at 94% 15%, rgba(255, 236, 200, 0.55), transparent),
+      radial-gradient(1.3px 1.3px at 82% 90%, rgba(255, 236, 200, 0.55), transparent),
+      radial-gradient(1.2px 1.2px at 15% 85%, rgba(255, 236, 200, 0.50), transparent);
+    animation: innerTwinkle 8s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+
+  .archive > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .archive-header {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .archive-kicker {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.66rem;
+    font-weight: 700;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    color: #ffb877;
+    padding-left: 0.46em;
+    margin-bottom: 12px;
+    text-shadow: 0 0 16px rgba(255, 170, 90, 0.35);
+  }
+
+  .archive-title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: clamp(1.6rem, 4.8vw, 2.2rem);
+    line-height: 1.2;
+    color: #ffe4b6;
+    text-shadow: 0 0 30px rgba(255, 190, 120, 0.35);
+    margin-bottom: 14px;
+  }
+
+  .archive-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(0.98rem, 2.5vw, 1.1rem);
+    line-height: 1.8;
+    color: #d9a98f;
+    max-width: 44ch;
+    margin: 0 auto;
+    letter-spacing: 0.02em;
+  }
+
+  .archive-rule {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 160px;
+    margin: 22px auto 0;
+    color: rgba(232, 185, 106, 0.65);
+    font-size: 0.62rem;
+  }
+
+  .archive-rule::before,
+  .archive-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+  }
+
+  .archive-rule::before {
+    background: linear-gradient(90deg, transparent, rgba(232, 185, 106, 0.6));
+  }
+
+  .archive-rule::after {
+    background: linear-gradient(90deg, rgba(232, 185, 106, 0.6), transparent);
+  }
+
+  /* ============================================================
+     MEMORY CARDS
+     ============================================================ */
+  .memory-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    margin-top: 32px;
+  }
+
+  .memory-card {
+    position: relative;
+    padding: 22px 20px 20px;
+    border-radius: 18px;
+    border: 1px solid rgba(255, 214, 150, 0.22);
+    background:
+      radial-gradient(ellipse 120% 100% at 50% -20%, rgba(255, 220, 160, 0.10), transparent 70%),
+      linear-gradient(165deg, rgba(58, 18, 48, 0.55) 0%, rgba(36, 12, 30, 0.60) 100%);
+    box-shadow:
+      0 18px 40px -24px rgba(0, 0, 0, 0.75),
+      inset 0 0 30px rgba(255, 200, 140, 0.04);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 1s ease, transform 1s cubic-bezier(0.2, 0.8, 0.3, 1),
+      border-color 0.35s ease, box-shadow 0.35s ease;
+    cursor: default;
+    overflow: hidden;
+  }
+
+  .archive.is-visible .memory-card {
+    opacity: 1;
+    transform: none;
+  }
+
+  .memory-card:hover {
+    transform: translateY(-4px) rotate(-0.4deg);
+    border-color: rgba(255, 214, 150, 0.5);
+    box-shadow:
+      0 24px 50px -24px rgba(0, 0, 0, 0.85),
+      0 0 40px rgba(255, 200, 130, 0.15),
+      inset 0 0 30px rgba(255, 200, 140, 0.06);
+  }
+
+  .memory-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(120deg,
+      transparent 30%,
+      rgba(255, 240, 200, 0.08) 45%,
+      rgba(255, 240, 200, 0.14) 50%,
+      rgba(255, 240, 200, 0.08) 55%,
+      transparent 70%);
+    background-size: 260% 260%;
+    background-position: 200% 0;
+    transition: background-position 1.4s ease;
+    border-radius: 18px;
+  }
+
+  .memory-card:hover::after {
+    background-position: -100% 0;
+  }
+
+  .memory-emoji {
+    display: inline-block;
+    font-size: 1.6rem;
+    line-height: 1;
+    margin-bottom: 12px;
+    filter: drop-shadow(0 4px 10px rgba(255, 160, 100, 0.35));
+  }
+
+  .memory-title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 1.28rem;
+    color: #ffe4b6;
+    line-height: 1.25;
+    margin-bottom: 8px;
+    text-shadow: 0 0 20px rgba(255, 190, 120, 0.30);
+  }
+
+  .memory-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #e7cfc0;
+    letter-spacing: 0.01em;
+  }
+
+  .memory-text em {
+    font-style: italic;
+    color: #ffd9a4;
+  }
+
+  .memory-text strong {
+    font-weight: 600;
+    color: #ffe6ae;
+  }
+
+  /* ============================================================
+     PROMISE CARDS
+     ============================================================ */
+  .promise-list {
+    list-style: none;
+    display: grid;
+    gap: 14px;
+    margin-top: 30px;
+  }
+
+  .promise-item {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    padding: 18px 20px 18px 22px;
+    border-radius: 16px;
+    border: 1px solid rgba(255, 214, 150, 0.20);
+    background:
+      linear-gradient(160deg, rgba(52, 16, 44, 0.55) 0%, rgba(30, 10, 26, 0.62) 100%);
+    box-shadow:
+      0 14px 30px -22px rgba(0, 0, 0, 0.8),
+      inset 0 0 26px rgba(255, 200, 140, 0.04);
+    opacity: 0;
+    transform: translateX(-16px);
+    transition: opacity 0.9s ease, transform 0.9s cubic-bezier(0.2, 0.8, 0.3, 1),
+      border-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .archive.is-visible .promise-item {
+    opacity: 1;
+    transform: none;
+  }
+
+  .promise-item:hover {
+    border-color: rgba(255, 214, 150, 0.45);
+    box-shadow:
+      0 20px 40px -22px rgba(0, 0, 0, 0.85),
+      0 0 34px rgba(255, 200, 130, 0.14),
+      inset 0 0 26px rgba(255, 200, 140, 0.06);
+  }
+
+  .promise-badge {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: grid;
+    place-items: center;
+    font-size: 1.2rem;
+    background: linear-gradient(140deg, rgba(255, 220, 150, 0.18), rgba(255, 180, 120, 0.10));
+    border: 1px solid rgba(255, 220, 150, 0.30);
+    box-shadow: 0 0 20px rgba(255, 200, 130, 0.15);
+    text-shadow: 0 0 12px rgba(255, 200, 130, 0.35);
+  }
+
+  .promise-body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .promise-title {
+    font-family: 'Dancing Script', cursive;
+    font-weight: 700;
+    font-size: 1.18rem;
+    color: #ffe4b6;
+    line-height: 1.25;
+    margin-bottom: 4px;
+    text-shadow: 0 0 18px rgba(255, 190, 120, 0.28);
+  }
+
+  .promise-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.97rem;
+    line-height: 1.7;
+    color: #e0c8bc;
+    letter-spacing: 0.01em;
+  }
+
+  .promise-text em {
+    font-style: italic;
+    color: #ffd9a4;
+  }
+
+  /* ============================================================
+     LAST TRANSITION — puente hacia la última página
+     ============================================================ */
+  .last-transition {
+    position: relative;
+    overflow: hidden;
+    margin: 56px 0 30px;
+    padding: clamp(36px, 5.5vw, 58px) clamp(22px, 4vw, 40px);
+    border-radius: 24px;
+    border: 1px solid rgba(255, 214, 150, 0.32);
+    background:
+      radial-gradient(ellipse 130% 100% at 50% -15%, rgba(255, 200, 140, 0.14), transparent 70%),
+      radial-gradient(ellipse 130% 100% at 50% 120%, rgba(172, 112, 255, 0.12), transparent 70%),
+      linear-gradient(168deg, rgba(58, 16, 48, 0.58) 0%, rgba(38, 12, 30, 0.58) 55%, rgba(22, 7, 18, 0.64) 100%);
+    box-shadow:
+      0 0 90px rgba(255, 200, 120, 0.10),
+      inset 0 0 70px rgba(255, 200, 140, 0.05);
+    text-align: center;
+  }
+
+  .last-transition::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+      radial-gradient(1.3px 1.3px at 8% 22%, rgba(255, 236, 200, 0.75), transparent),
+      radial-gradient(1.2px 1.2px at 92% 18%, rgba(255, 236, 200, 0.60), transparent),
+      radial-gradient(1.4px 1.4px at 78% 88%, rgba(255, 236, 200, 0.65), transparent),
+      radial-gradient(1.2px 1.2px at 20% 82%, rgba(255, 236, 200, 0.50), transparent),
+      radial-gradient(1.3px 1.3px at 55% 42%, rgba(255, 236, 200, 0.45), transparent);
+    animation: innerTwinkle 7s ease-in-out infinite alternate;
+    z-index: 0;
+  }
+
+  .last-transition > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .lt-kicker {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.46em;
+    text-transform: uppercase;
+    color: var(--gold-soft);
+    padding-left: 0.46em;
+    margin-bottom: 22px;
+    text-shadow: 0 0 16px rgba(255, 200, 130, 0.35);
+  }
+
+  .lt-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.2rem, 3.4vw, 1.52rem);
+    line-height: 1.95;
+    color: #ffe4b6;
+    margin-bottom: 34px !important;
+    text-shadow: 0 0 30px rgba(255, 190, 120, 0.32);
+    max-width: 34ch;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .lt-quote .qm {
+    display: block;
+    font-size: 1.5em;
+    line-height: 0.6;
+    color: rgba(255, 186, 120, 0.55);
+    margin-bottom: 16px;
+  }
+
+  .lt-quote em {
+    color: #ffd9a4;
+    font-style: italic;
+  }
+
+  .lt-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: clamp(0.95rem, 2.4vw, 1.05rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #1a0410;
+    background: linear-gradient(135deg, #c98f3c 0%, #ffe6a8 45%, #c98f3c 100%);
+    background-size: 200% auto;
+    border: none;
+    border-radius: 999px;
+    padding: 18px 44px;
+    text-decoration: none;
+    cursor: pointer;
+    box-shadow:
+      0 20px 46px -14px rgba(232, 185, 106, 0.9),
+      0 0 0 4px rgba(255, 210, 150, 0.12);
+    transition: transform 0.35s cubic-bezier(0.2, 0.9, 0.3, 1.4),
+                background-position 0.7s ease,
+                box-shadow 0.35s ease;
+    animation: ltBtnGlow 3.2s ease-in-out infinite;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @keyframes ltBtnGlow {
+    0%, 100% {
+      box-shadow:
+        0 20px 46px -14px rgba(232, 185, 106, 0.9),
+        0 0 0 4px rgba(255, 210, 150, 0.12);
+    }
+    50% {
+      box-shadow:
+        0 20px 46px -14px rgba(255, 220, 150, 1),
+        0 0 0 12px rgba(255, 210, 150, 0.20);
+    }
+  }
+
+  .lt-btn:hover {
+    transform: translateY(-3px) scale(1.04);
+    background-position: 100% center;
+  }
+
+  .lt-btn:active {
+    transform: translateY(-1px) scale(0.99);
+  }
+
+  .lt-arrow {
+    font-size: 1.15em;
+    line-height: 1;
+    display: inline-block;
+    transition: transform 0.3s ease;
+  }
+
+  .lt-btn:hover .lt-arrow {
+    transform: translateX(4px);
+  }
+
+  .lt-note {
+    display: block;
+    margin-top: 22px;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #b98fa8;
+    letter-spacing: 0.06em;
+  }
+
+  /* ============================================================
+     CLOSING
+     ============================================================ */
   .closing {
     text-align: center;
-    margin-top: 40px;
+    margin-top: 44px;
     padding-top: 34px;
     border-top: 1px dashed rgba(232, 185, 106, 0.25);
   }
@@ -381,7 +1082,7 @@
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 1rem;
-    color: #b98fa8;
+    color: var(--ink-faint);
     letter-spacing: 0.08em;
     margin-bottom: 8px;
   }
@@ -389,7 +1090,7 @@
   .closing .sig-name {
     font-family: 'Dancing Script', cursive;
     font-size: clamp(1.7rem, 4.5vw, 2.2rem);
-    color: #f0c674;
+    color: var(--gold-soft);
     text-shadow: 0 0 26px rgba(255, 200, 120, 0.4);
     line-height: 1.2;
   }
@@ -398,10 +1099,11 @@
     display: inline-block;
     margin-top: 12px;
     font-size: 1.5rem;
-    color: #ff7096;
+    color: var(--rose);
     filter: drop-shadow(0 0 16px rgba(255, 90, 140, 0.85));
     animation: heartbeat 1.8s ease-in-out infinite;
   }
+
   @keyframes heartbeat {
     0%, 100% { transform: scale(1); }
     15%      { transform: scale(1.2); }
@@ -410,7 +1112,9 @@
     60%      { transform: scale(1); }
   }
 
-  /* ---------- Back button ---------- */
+  /* ============================================================
+     BACK BUTTON
+     ============================================================ */
   .back-btn {
     display: inline-flex;
     align-items: center;
@@ -436,23 +1140,27 @@
     z-index: 2;
     -webkit-tap-highlight-color: transparent;
   }
+
   .back-btn:hover {
     transform: translateY(-3px) scale(1.05);
     background-position: 100% center;
     box-shadow: 0 22px 50px -14px rgba(255, 220, 150, 1);
   }
+
   .back-btn:active {
     transform: translateY(-1px) scale(0.98);
   }
 
-  /* Footer note */
+  /* ============================================================
+     FOOTER NOTE + MUSIC HINT
+     ============================================================ */
   .foot-note {
     text-align: center;
     margin-top: 26px;
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
     font-size: 0.92rem;
-    color: #b98fa8;
+    color: var(--ink-faint);
     letter-spacing: 0.06em;
     max-width: 40ch;
     line-height: 1.7;
@@ -460,7 +1168,6 @@
     z-index: 2;
   }
 
-  /* Music hint under the footer */
   .music-hint {
     text-align: center;
     margin-top: 10px;
@@ -471,16 +1178,19 @@
     color: #d3a7bf;
     position: relative;
     z-index: 2;
+    max-width: 44ch;
+    line-height: 1.6;
   }
+
   .music-hint .note {
     color: #ffd79a;
     font-size: 1rem;
     text-shadow: 0 0 14px rgba(255, 200, 130, 0.65);
   }
 
-  /* =========================================================
-     MUSIC BUTTON — matches the "For Evolet" index page style
-     ========================================================= */
+  /* ============================================================
+     MUSIC BUTTON
+     ============================================================ */
   .music-btn {
     position: fixed;
     bottom: 22px;
@@ -561,10 +1271,10 @@
     }
   }
 
-  /* When autoplay is blocked, gently pulse to invite the tap */
   .music-btn.is-pending {
     animation: pendingPulse 2.2s ease-in-out infinite;
   }
+
   @keyframes pendingPulse {
     0%, 100% {
       box-shadow:
@@ -580,25 +1290,128 @@
     }
   }
 
-  /* ---------- Responsive ---------- */
+  /* ============================================================
+     MINI HEARTS
+     ============================================================ */
+  .mini-hearts {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+    border-radius: inherit;
+  }
+
+  .mini-heart {
+    position: absolute;
+    font-size: 0.9rem;
+    color: rgba(255, 160, 200, 0.55);
+    text-shadow: 0 0 10px rgba(255, 130, 180, 0.55);
+    animation: miniFloat 8s ease-in-out infinite;
+    animation-delay: var(--d, 0s);
+    left: var(--x, 50%);
+    top: var(--y, 50%);
+    will-change: transform, opacity;
+    opacity: 0.85;
+  }
+
+  @keyframes miniFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.55; }
+    50%      { transform: translateY(-14px) rotate(8deg); opacity: 1; }
+  }
+
+  /* ============================================================
+     TITLE GLOW
+     ============================================================ */
+  .title-glow {
+    position: relative;
+    display: inline-block;
+  }
+
+  .title-glow::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -20px;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 30px;
+    background: radial-gradient(ellipse at center, rgba(255, 200, 130, 0.35), transparent 70%);
+    filter: blur(14px);
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
   @media (max-width: 620px) {
     .letter-page {
       padding: 34px 22px 32px;
       border-radius: 24px;
     }
+
     .letter-body {
       font-size: 1.04rem;
       line-height: 1.95;
     }
+
     .letter-body .insight {
       padding: 18px 18px;
       font-size: 1em;
     }
+
     .november {
       padding: 26px 18px;
       border-radius: 18px;
     }
-    .back-btn { padding: 14px 30px; font-size: 0.98rem; }
+
+    .gratitude,
+    .never-tired {
+      padding: 24px 18px;
+      border-radius: 18px;
+    }
+
+    .archive {
+      padding: 26px 18px 24px;
+      border-radius: 20px;
+    }
+
+    .last-transition {
+      padding: 28px 18px;
+      border-radius: 20px;
+    }
+
+    .lt-btn {
+      padding: 16px 34px;
+      font-size: 0.95rem;
+    }
+
+    .memory-grid {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .memory-card {
+      padding: 20px 18px;
+    }
+
+    .promise-item {
+      padding: 16px 16px 16px 18px;
+      gap: 12px;
+    }
+
+    .promise-badge {
+      width: 36px;
+      height: 36px;
+      font-size: 1.05rem;
+    }
+
+    .back-btn {
+      padding: 14px 30px;
+      font-size: 0.98rem;
+    }
+
     .music-btn {
       width: 50px;
       height: 50px;
@@ -606,8 +1419,17 @@
       right: 16px;
       font-size: 1.25rem;
     }
+
+    .never-tired .rebel-heart {
+      font-size: 1.15rem;
+      top: 14px;
+      right: 14px;
+    }
   }
 
+  /* ============================================================
+     REDUCED MOTION
+     ============================================================ */
   @media (prefers-reduced-motion: reduce) {
     .star,
     .dust span,
@@ -617,13 +1439,129 @@
     .nov-leaf,
     .music-btn .music-icon,
     .music-btn.is-playing::after,
-    .music-btn.is-pending { animation: none !important; }
-    .letter-body p { opacity: 1 !important; transform: none !important; }
+    .music-btn.is-pending,
+    .mini-heart,
+    .never-tired .rebel-heart,
+    .lt-btn { animation: none !important; }
+
+    .letter-body p,
+    .gratitude-text p { opacity: 1 !important; transform: none !important; }
+
+    .archive { opacity: 1 !important; transform: none !important; }
+    .memory-card,
+    .promise-item { opacity: 1 !important; transform: none !important; }
+
     .nov-leaf { opacity: 0.5 !important; }
   }
 </style>
 </head>
 <body>
+  <!-- ═══════════ 404 GUARD — 72-hour lock, runs before anything else ═══════════ -->
+<script>
+(function () {
+  if (window.__evoletGuardRan) return;
+  window.__evoletGuardRan = true;
+
+  var FLAG_KEY = 'evolet-hasta-aqui-ended';
+  var WINDOW_MS = 72 * 60 * 60 * 1000; /* 72 horas */
+
+  /* ---- 1. Leer la fecha de finalización guardada ---- */
+  var raw = localStorage.getItem(FLAG_KEY);
+  if (!raw) return; /* No hay flag → página normal */
+
+  var endedAt = parseInt(raw, 10);
+
+  /* Si era el formato viejo ('1') o está corrupto → tratar como expirado */
+  if (!endedAt || isNaN(endedAt)) {
+    try { localStorage.removeItem(FLAG_KEY); } catch (e) {}
+    return;
+  }
+
+  /* ---- 2. Comprobar si ya pasaron las 72 horas ---- */
+  var elapsed = Date.now() - endedAt;
+  if (elapsed >= WINDOW_MS) {
+    /* Expirado → borrar flag y dejar cargar la página normal */
+    try { localStorage.removeItem(FLAG_KEY); } catch (e) {}
+    return;
+  }
+
+  /* ---- 3. Todavía dentro de las 72h → mostrar 404 ---- */
+
+  /* Bloquear cualquier audio para que no suene */
+  if (window.HTMLMediaElement && HTMLMediaElement.prototype.play) {
+    HTMLMediaElement.prototype.play = function () {
+      return Promise.reject(new Error('Evolet page ended'));
+    };
+  }
+
+  /* Ocultar la página al instante — sin parpadeos */
+  var hide = document.createElement('style');
+  hide.id = 'evolet-404-hide';
+  hide.textContent = 'html{visibility:hidden!important}body{background:#000!important}';
+  (document.head || document.documentElement).appendChild(hide);
+
+  var done = false;
+  function render404() {
+    if (done) return;
+    done = true;
+
+    try {
+      var auds = document.querySelectorAll('audio');
+      for (var i = 0; i < auds.length; i++) {
+        try { auds[i].pause(); } catch (e) {}
+        try { auds[i].removeAttribute('src'); } catch (e) {}
+        try { while (auds[i].firstChild) auds[i].removeChild(auds[i].firstChild); } catch (e) {}
+      }
+    } catch (e) {}
+
+    /* Mostrar cuánto falta para que se desbloquee (detalle bonito) */
+    var remaining = WINDOW_MS - elapsed;
+    var hoursLeft = Math.ceil(remaining / (60 * 60 * 1000));
+    var unlockNote = hoursLeft > 0
+      ? '<p style="font-family:Georgia,serif;font-style:italic;font-size:0.85rem;' +
+          'color:#8a6a7e;letter-spacing:0.06em;margin:22px 0 0 0;">' +
+          'Se desbloquea en ~' + hoursLeft + ' h</p>'
+      : '';
+
+    document.body.innerHTML =
+      '<div style="position:fixed;inset:0;z-index:99999;display:grid;place-items:center;' +
+        'background:radial-gradient(ellipse 70% 60% at 50% 40%,#0e040c 0%,#050208 65%,#000 100%);' +
+        'text-align:center;padding:24px;font-family:Georgia,serif;color:#f3e3d2;">' +
+        '<div style="max-width:480px;">' +
+          '<p style="color:rgba(232,185,106,0.6);letter-spacing:0.9em;font-size:0.72rem;' +
+            'padding-left:0.9em;margin:0 0 26px 0;">✦ ✦ ✦</p>' +
+          '<div style="font-family:sans-serif;font-weight:700;font-size:clamp(5rem,22vw,10rem);' +
+            'line-height:0.95;letter-spacing:0.04em;' +
+            'background:linear-gradient(100deg,#c98f3c,#ffeec2,#c98f3c);' +
+            'background-size:220% auto;-webkit-background-clip:text;background-clip:text;' +
+            '-webkit-text-fill-color:transparent;margin-bottom:24px;">404</div>' +
+          '<p style="font-size:clamp(1.05rem,2.8vw,1.25rem);line-height:1.8;' +
+            'color:#cfa9c0;letter-spacing:0.04em;margin:0 0 22px 0;">' +
+            'Esta página ya no existe.<br>' +
+            '<em style="color:#ffd9a4;font-style:italic;">Se fue con las palabras, se quedó solo el silencio.</em>' +
+          '</p>' +
+          '<span style="display:block;font-family:cursive;font-size:clamp(1.6rem,5vw,2.2rem);' +
+            'color:#ffe4b6;text-shadow:0 0 30px rgba(255,200,130,0.4);">— te amo, siempre —</span>' +
+          '<br><span style="display:inline-block;margin-top:22px;font-size:1.4rem;color:#ff7096;' +
+            'filter:drop-shadow(0 0 16px rgba(255,90,140,0.85));">❤</span>' +
+          unlockNote +
+        '</div>' +
+      '</div>';
+
+    document.body.style.cssText = 'margin:0;padding:0;background:#000;overflow:hidden;min-height:100vh;';
+    document.documentElement.style.visibility = '';
+    var hs = document.getElementById('evolet-404-hide');
+    if (hs) hs.remove();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', render404);
+  } else {
+    render404();
+  }
+})();
+</script>
+<!-- ═══════════ END 404 GUARD ═══════════ -->
 
   <!-- ═══════════ STARFIELD ═══════════ -->
   <div class="starfield" id="starfield" aria-hidden="true"></div>
@@ -634,13 +1572,15 @@
   <!-- ═══════════ LETTER PAGE ═══════════ -->
   <main class="letter-page">
 
+    <!-- ─────────── HEADER ─────────── -->
     <p class="ornament">✦ ✦ ✦</p>
     <p class="meta">Capítulo dos</p>
-    <h1 class="title">Lo que no te dije en persona</h1>
+    <h1 class="title title-glow">Lo que no te dije en persona</h1>
     <p class="subtitle">— y ahora, mi amor, te lo escribo —</p>
 
     <div class="rule"><span>✦</span></div>
 
+    <!-- ─────────── LETTER BODY ─────────── -->
     <div class="letter-body" id="letterBody">
 
       <p class="opening">
@@ -710,7 +1650,7 @@
         <em>Sabes, mi amor… eres la única variable<br>que hace que mi sistema biológico pierda el equilibrio.</em>
       </p>
 
-      <!-- ═══════════ NOVIEMBRE — la cita ═══════════ -->
+      <!-- ═══════════ NOVIEMBRE ═══════════ -->
       <section class="november" aria-label="Noviembre">
         <div class="nov-leaves" aria-hidden="true"></div>
 
@@ -788,7 +1728,305 @@
 
     </div>
 
-    <!-- ─────────── Closing signature ─────────── -->
+    <!-- ═══════════ GRATITUD ═══════════ -->
+    <section class="gratitude" aria-label="Gratitud">
+      <p class="gratitude-label">Gracias, mi amor</p>
+
+      <div class="gratitude-text">
+        <p>
+          Todo lo que siempre he querido me lo has dado: incluso el amor. Aquellos
+          <em>momentos bonitos de pareja</em> contigo, tantas cosas que me has enseñado —
+          y te lo agradezco mucho, mi amor. <strong>Gracias por siempre estar aquí</strong>.
+        </p>
+
+        <p>
+          Y estos días, nomás me siento y te contemplo — porque lo único que hay
+          en mi corazón y en mis ojos es <strong>tu linda sonrisa</strong> y nada más:
+          los bellos momentos junto a ti, y las conversaciones más random.
+        </p>
+
+        <p>
+          <em>Eres mi lugar favorito y mi lugar seguro.</em><br>
+          Te amo, y te amaré hasta los últimos días.
+        </p>
+      </div>
+
+      <p class="gratitude-signature">— tuyo, siempre —</p>
+    </section>
+
+    <!-- ═══════════ NUNCA ME VOY A CANSAR DE TI ═══════════ -->
+    <section class="never-tired" aria-label="Nunca me voy a cansar de ti">
+      <span class="rebel-heart" aria-hidden="true">❤</span>
+
+      <p class="gratitude-label">Y que te quede bien claro</p>
+
+      <div class="gratitude-text">
+        <p>
+          Ya, la verdad, <strong>te equivocas</strong> si has llegado a pensar que algún
+          día me voy a cansar de ti, mi amor jeje. Pues es totalmente lo contrario:
+          me gusta estar contigo, pasar el rato contigo, pensar hasta dónde vamos a
+          llegar, qué va a pasar con lo nuestro.
+        </p>
+
+        <p>
+          La verdad, nada puedo asegurarte — soy humano y cometo errores, pero de
+          aquellos aprendo. Me enojo, me pongo competitivo… pero muy en el fondo,
+          aprendí todo solo, y pues no culpo a aquello, sabes. Nomás no sé reaccionar
+          a veces cuando juego contigo: me emociono, me quedo callado, me concentro —
+          y sabes, <em>me divierto muchísimo contigo</em>.
+        </p>
+
+        <p>
+          Por eso mil veces prefiero quedarme a jugar contigo que ir a jugar con mis
+          amigos. Prefiero escucharte a ti hablar mmds y enojarte por los jugadores
+          con quienes nos topamos jeje… pero mira, mi amor, todo eso es una experiencia
+          para mí.
+        </p>
+
+        <p>
+          Así que mi amor: <strong>yo no me voy a aburrir de ti, nada</strong>.
+          Eres lo mejor que me ha pasado.
+        </p>
+      </div>
+
+      <p class="gratitude-signature">— y eso no va a cambiar —</p>
+    </section>
+
+    <!-- ═══════════ ARCHIVO UNO ═══════════ -->
+    <section class="archive" id="archivoUno" aria-label="Archivo uno: Momentos que guardo">
+      <div class="mini-hearts" aria-hidden="true">
+        <span class="mini-heart" style="--x: 8%;  --y: 22%; --d: 0.4s;">❤</span>
+        <span class="mini-heart" style="--x: 90%; --y: 18%; --d: 1.4s;">❤</span>
+        <span class="mini-heart" style="--x: 14%; --y: 82%; --d: 2.1s;">❤</span>
+        <span class="mini-heart" style="--x: 86%; --y: 86%; --d: 0.9s;">❤</span>
+      </div>
+
+      <header class="archive-header">
+        <p class="archive-kicker">Archivo uno</p>
+        <h2 class="archive-title">Momentos que guardo</h2>
+        <p class="archive-intro">
+          Cosas pequeñas, casi invisibles para el mundo, que para mí
+          valen más que todo el oro del universo.
+        </p>
+        <div class="archive-rule"><span>✦</span></div>
+      </header>
+
+      <div class="memory-grid">
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">🌙</span>
+          <h3 class="memory-title">Las noches contigo</h3>
+          <p class="memory-text">
+            Esas llamadas que empezaban con "solo un ratito" y terminaban
+            cuando el sol ya estaba saliendo. Tú con voz de sueño, yo sin querer
+            colgar. <em>Mi parte favorita del día.</em>
+          </p>
+        </article>
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">🍜</span>
+          <h3 class="memory-title">Cuando te ríes de mí</h3>
+          <p class="memory-text">
+            Sí, me da coraje un poquito. Pero esa risa tuya — cuando se te escapa
+            sin permiso — <strong>es la cosa más bonita que he escuchado</strong>.
+            Ríete de mí mil veces más.
+          </p>
+        </article>
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">🎵</span>
+          <h3 class="memory-title">Nuestras canciones</h3>
+          <p class="memory-text">
+            Hay canciones que ya no puedo escuchar sin pensar en ti. Se quedaron
+            pegadas a tu nombre, y no me molesta nada — <em>al contrario</em>.
+          </p>
+        </article>
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">🌧️</span>
+          <h3 class="memory-title">Los días grises</h3>
+          <p class="memory-text">
+            Esos días en los que no quería hablar con nadie, y tú llegabas
+            con tu calma a recordarme que todo iba a estar bien.
+            <strong>Ahí supe que te amaba</strong>.
+          </p>
+        </article>
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">🎮</span>
+          <h3 class="memory-title">Los juegos y las risas</h3>
+          <p class="memory-text">
+            Perder mil veces contigo es mejor que ganar mil veces sin ti.
+            Esa es la única tabla de puntuación que me importa.
+          </p>
+        </article>
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">✨</span>
+          <h3 class="memory-title">Lo random</h3>
+          <p class="memory-text">
+            Las conversaciones más random son mi tesoro escondido: un meme,
+            una idea absurda, un plan imposible. <em>Contigo todo es diversión</em>.
+          </p>
+        </article>
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">🌷</span>
+          <h3 class="memory-title">Cuando me cuentas tu día</h3>
+          <p class="memory-text">
+            Aunque sea "no hice nada", me encanta escucharte. Porque ahí,
+            en los detalles más chiquitos, es donde <strong>más te conozco</strong>.
+          </p>
+        </article>
+
+        <article class="memory-card">
+          <span class="memory-emoji" aria-hidden="true">💫</span>
+          <h3 class="memory-title">Cuando me llamas "amor"</h3>
+          <p class="memory-text">
+            Suena diferente cuando lo dices tú. Se me queda dando vueltas
+            en el pecho toda la tarde. <em>Mi palabra favorita en tu voz.</em>
+          </p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ═══════════ ARCHIVO DOS ═══════════ -->
+    <section class="archive" id="archivoDos" aria-label="Archivo dos: Lo que nos falta por vivir">
+      <div class="mini-hearts" aria-hidden="true">
+        <span class="mini-heart" style="--x: 10%; --y: 20%; --d: 1.1s;">✦</span>
+        <span class="mini-heart" style="--x: 88%; --y: 24%; --d: 0.3s;">✦</span>
+        <span class="mini-heart" style="--x: 16%; --y: 84%; --d: 1.8s;">✦</span>
+        <span class="mini-heart" style="--x: 90%; --y: 88%; --d: 2.4s;">✦</span>
+      </div>
+
+      <header class="archive-header">
+        <p class="archive-kicker">Archivo dos</p>
+        <h2 class="archive-title">Lo que nos falta por vivir</h2>
+        <p class="archive-intro">
+          No es una promesa para mañana. Es una lista de cosas que, algún día,
+          quiero cumplir contigo. Sin fecha, pero con todo el corazón.
+        </p>
+        <div class="archive-rule"><span>✦</span></div>
+      </header>
+
+      <ul class="promise-list">
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">🌹</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Las flores que te debo</h3>
+            <p class="promise-text">
+              Esa primera vez que te dé un ramo y te vea la cara — voy a
+              grabármela para siempre. Te las debo, y te las voy a dar.
+              <em>Esa promesa no se rompe.</em>
+            </p>
+          </div>
+        </li>
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">🌅</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Ver el amanecer contigo</h3>
+            <p class="promise-text">
+              Sin prisa, con café o con frío, con tu cabeza en mi hombro.
+              Solo ver el cielo cambiar de color y saber que estás ahí.
+            </p>
+          </div>
+        </li>
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">🍦</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Un helado a tu lado</h3>
+            <p class="promise-text">
+              Caminar sin rumbo, compartiendo el mismo helado, peleando por
+              la última cucharada — <strong>el plan más simple del mundo</strong>,
+              y el que más quiero.
+            </p>
+          </div>
+        </li>
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">🎬</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Nuestra primera película en el cine</h3>
+            <p class="promise-text">
+              Esa en la que hablamos bajito, nos reímos de lo mismo y me
+              doy cuenta, a media película, de que <em>ya no estoy viendo la pantalla</em>.
+            </p>
+          </div>
+        </li>
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">📸</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Una foto que sea solo nuestra</h3>
+            <p class="promise-text">
+              De esas que no salen perfectas pero que se vuelven las favoritas.
+              Para ponerla de fondo y presumirte con todo el orgullo del mundo.
+            </p>
+          </div>
+        </li>
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">🎂</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Cumpleaños y fechas bonitas</h3>
+            <p class="promise-text">
+              Estar ahí. No solo el día de tu cumpleaños, sino todos
+              los días que importan. Y los que no importan también.
+            </p>
+          </div>
+        </li>
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">🏡</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Un lugar que sea "nuestro"</h3>
+            <p class="promise-text">
+              Un rincón, una cafetería, un parque. Un lugar al que
+              podamos volver y decir: <em>aquí empezó todo</em>.
+            </p>
+          </div>
+        </li>
+
+        <li class="promise-item">
+          <span class="promise-badge" aria-hidden="true">💫</span>
+          <div class="promise-body">
+            <h3 class="promise-title">Y todos los días después</h3>
+            <p class="promise-text">
+              Con calma, con prisa, con risa, con sueño. Con lo bonito y
+              lo difícil. <strong>Y todos los días después</strong> — contigo.
+            </p>
+          </div>
+        </li>
+
+      </ul>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════════
+         LAST TRANSITION — puente hacia la última carta
+         ═══════════════════════════════════════════════════ -->
+    <section class="last-transition" id="lastTransition" aria-label="La última carta">
+      <p class="lt-kicker">Antes de que te vayas</p>
+
+      <p class="lt-quote">
+        <span class="qm">❝</span>
+        Hay algo más que necesito decirte, mi amor —<br>
+        pero esta vez no cabe en un capítulo.<br>
+        <em>Guárdame un minuto más.</em>
+      </p>
+
+      <a href="hasta-aqui.html" class="lt-btn">
+        <span>Abrir mi última carta</span>
+        <span class="lt-arrow" aria-hidden="true">→</span>
+      </a>
+
+      <span class="lt-note">— léela hasta el final, te lo pido —</span>
+    </section>
+
+    <!-- ─────────── CLOSING SIGNATURE ─────────── -->
     <div class="closing">
       <p class="sig-label">Con todo lo que soy,</p>
       <p class="sig-name">Wilber</p>
@@ -797,9 +2035,10 @@
 
   </main>
 
-  <!-- ═══════════ BACK TO PAGE ONE ═══════════ -->
+  <!-- ═══════════ BACK BUTTON ═══════════ -->
   <a class="back-btn" href="index.html">← Volver a nuestra página</a>
 
+  <!-- ═══════════ FOOTER NOTE ═══════════ -->
   <p class="foot-note">
     Este capítulo se queda aquí, esperando a que estemos en llamada
     para leerlo juntos. 💫
@@ -810,12 +2049,7 @@
     toca el botón <span class="note" aria-hidden="true">♪</span> o cualquier parte de la página.
   </p>
 
-  <!-- ═══════════ YOUR LOCAL MP4 / MP3 MUSIC ═══════════
-       Put your file next to this HTML.
-       Primary:  tu-amo.mp3   (MP3 — best browser support)
-       Fallback: music.m4a    (MP4/M4A audio)
-       It auto-starts on page load. If the browser blocks
-       autoplay, it starts on the very first tap/scroll. -->
+  <!-- ═══════════ AUDIO ═══════════ -->
   <audio id="bgMusic" loop preload="auto" playsinline>
     <source src="tu-amo.mp3" type="audio/mpeg" />
     <source src="music.m4a" type="audio/mp4" />
@@ -828,53 +2062,60 @@
   </button>
 
 <script>
-  /* =========================================================
+  /* ============================================================
      1. STARFIELD
-     ========================================================= */
+     ============================================================ */
   (function buildStars() {
     const field = document.getElementById('starfield');
     if (!field) return;
 
-    const COUNT = 140;
-    for (let i = 0; i < COUNT; i++) {
+    const COUNT_BIG = 14;
+    const COUNT_MED = 46;
+    const COUNT_TINY = 96;
+    const TOTAL = COUNT_BIG + COUNT_MED + COUNT_TINY;
+
+    for (let i = 0; i < TOTAL; i++) {
       const s = document.createElement('span');
-      s.className = 'star' + (Math.random() > 0.82 ? ' big' : '');
-      s.style.left = Math.random() * 100 + '%';
-      s.style.top  = (Math.random() * 100) + '%';
-      s.style.animationDelay    = (-Math.random() * 3).toFixed(2) + 's';
-      s.style.animationDuration = (2 + Math.random() * 3).toFixed(2) + 's';
-      s.style.opacity = (0.35 + Math.random() * 0.65).toFixed(2);
+      let cls = 'star';
+      if (i < COUNT_BIG) cls += ' big';
+      else if (i >= COUNT_BIG + COUNT_MED) cls += ' tiny';
+      s.className = cls;
+      s.style.left = (Math.random() * 100).toFixed(3) + '%';
+      s.style.top  = (Math.random() * 100).toFixed(3) + '%';
+      s.style.animationDelay    = (-Math.random() * 4).toFixed(2) + 's';
+      s.style.animationDuration = (2 + Math.random() * 3.5).toFixed(2) + 's';
+      s.style.opacity = (0.3 + Math.random() * 0.7).toFixed(2);
       field.appendChild(s);
     }
   })();
 
-  /* =========================================================
-     2. FLOATING DUST (tiny drifting emojis)
-     ========================================================= */
+  /* ============================================================
+     2. FLOATING DUST
+     ============================================================ */
   (function buildDust() {
     const layer = document.getElementById('dust');
     if (!layer) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-    const pool = ['✨', '💫', '⭐', '🌟', '✦', '🤍', '💗'];
-    const COUNT = 26;
+    const pool = ['✨', '💫', '⭐', '🌟', '✦', '🤍', '💗', '💖'];
+    const COUNT = 32;
 
     for (let i = 0; i < COUNT; i++) {
       const s = document.createElement('span');
       s.textContent = pool[Math.floor(Math.random() * pool.length)];
-      s.style.left = Math.random() * 100 + '%';
+      s.style.left = (Math.random() * 100).toFixed(2) + '%';
       s.style.fontSize = (8 + Math.random() * 14).toFixed(1) + 'px';
-      s.style.animationDelay    = (-Math.random() * 22).toFixed(2) + 's';
-      s.style.animationDuration = (14 + Math.random() * 14).toFixed(2) + 's';
-      s.style.opacity = (0.45 + Math.random() * 0.45).toFixed(2);
-      s.style.setProperty('--drift', (Math.random() * 200 - 100).toFixed(0) + 'px');
+      s.style.animationDelay    = (-Math.random() * 24).toFixed(2) + 's';
+      s.style.animationDuration = (14 + Math.random() * 16).toFixed(2) + 's';
+      s.style.opacity = (0.4 + Math.random() * 0.5).toFixed(2);
+      s.style.setProperty('--drift', (Math.random() * 220 - 110).toFixed(0) + 'px');
       layer.appendChild(s);
     }
   })();
 
-  /* =========================================================
-     3. NOVEMBER LEAVES (autumn drift inside the quote block)
-     ========================================================= */
+  /* ============================================================
+     3. NOVEMBER LEAVES
+     ============================================================ */
   (function buildNovemberLeaves() {
     const layers = document.querySelectorAll('.nov-leaves');
     if (!layers.length) return;
@@ -883,30 +2124,30 @@
     const pool = ['🍂', '🍁', '🍃', '✦'];
 
     layers.forEach((layer) => {
-      for (let i = 0; i < 16; i++) {
+      for (let i = 0; i < 18; i++) {
         const leaf = document.createElement('span');
         leaf.className = 'nov-leaf';
         leaf.textContent = pool[Math.floor(Math.random() * pool.length)];
-        leaf.style.left = Math.random() * 100 + '%';
-        leaf.style.fontSize = (9 + Math.random() * 12).toFixed(1) + 'px';
-        leaf.style.animationDelay    = (-Math.random() * 12).toFixed(2) + 's';
-        leaf.style.animationDuration = (9 + Math.random() * 9).toFixed(2) + 's';
-        leaf.style.setProperty('--drift', (Math.random() * 80 - 40).toFixed(0) + 'px');
+        leaf.style.left = (Math.random() * 100).toFixed(2) + '%';
+        leaf.style.fontSize = (9 + Math.random() * 13).toFixed(1) + 'px';
+        leaf.style.animationDelay    = (-Math.random() * 14).toFixed(2) + 's';
+        leaf.style.animationDuration = (9 + Math.random() * 10).toFixed(2) + 's';
+        leaf.style.setProperty('--drift', (Math.random() * 90 - 45).toFixed(0) + 'px');
         layer.appendChild(leaf);
       }
     });
   })();
 
-  /* =========================================================
-     4. PARAGRAPH REVEAL ON SCROLL
-     ========================================================= */
-  (function revealParagraphs() {
+  /* ============================================================
+     4. LETTER PARAGRAPH REVEAL
+     ============================================================ */
+  (function revealLetterParagraphs() {
     const body = document.getElementById('letterBody');
     if (!body) return;
 
     const paras = body.querySelectorAll('p');
     paras.forEach((p, i) => {
-      p.style.transitionDelay = (0.15 + i * 0.08).toFixed(2) + 's';
+      p.style.transitionDelay = (0.15 + i * 0.07).toFixed(2) + 's';
     });
 
     if ('IntersectionObserver' in window) {
@@ -926,24 +2167,128 @@
 
     setTimeout(() => {
       paras.forEach((p) => p.classList.add('reveal'));
-    }, 3000);
+    }, 3200);
   })();
 
-  /* =========================================================
-     5. MUSIC — auto-plays YOUR local MP3/M4A on page load.
-        If the browser blocks autoplay with sound (most do
-        on first visit), it starts on the first interaction
-        anywhere on the page. The button stays in sync.
-     ========================================================= */
+  /* ============================================================
+     5. GRATITUDE + NEVER-TIRED REVEAL
+     ============================================================ */
+  (function revealSoftBlocks() {
+    const blocks = document.querySelectorAll('.gratitude-text, .never-tired .gratitude-text');
+    if (!blocks.length) return;
+
+    blocks.forEach((box) => {
+      const paras = box.querySelectorAll('p');
+      paras.forEach((p, i) => {
+        p.style.transitionDelay = (0.1 + i * 0.1).toFixed(2) + 's';
+      });
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('reveal');
+              io.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+        paras.forEach((p) => io.observe(p));
+      } else {
+        paras.forEach((p) => p.classList.add('reveal'));
+      }
+    });
+  })();
+
+  /* ============================================================
+     6. ARCHIVE REVEAL
+     ============================================================ */
+  (function revealArchives() {
+    const archives = document.querySelectorAll('.archive');
+    if (!archives.length) return;
+
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            const cards = entry.target.querySelectorAll('.memory-card, .promise-item');
+            cards.forEach((card, i) => {
+              card.style.transitionDelay = (0.08 + i * 0.08).toFixed(2) + 's';
+            });
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+      archives.forEach((a) => io.observe(a));
+    } else {
+      archives.forEach((a) => a.classList.add('is-visible'));
+    }
+  })();
+
+  /* ============================================================
+     7. PARALLAX — stars drift with scroll
+     ============================================================ */
+  (function subtleParallax() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const field = document.getElementById('starfield');
+    if (!field) return;
+
+    let ticking = false;
+
+    function update() {
+      const y = window.scrollY || window.pageYOffset || 0;
+      field.style.transform = 'translate3d(0, ' + (y * -0.04).toFixed(2) + 'px, 0)';
+      ticking = false;
+    }
+
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, { passive: true });
+  })();
+
+  /* ============================================================
+     8. MINI HEARTS BLOOM
+     ============================================================ */
+  (function bloomMiniHearts() {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const containers = document.querySelectorAll('.mini-hearts');
+    if (!containers.length) return;
+
+    const pool = ['❤', '✦', '✧', '·'];
+    containers.forEach((c) => {
+      const extra = 3 + Math.floor(Math.random() * 3);
+      for (let i = 0; i < extra; i++) {
+        const s = document.createElement('span');
+        s.className = 'mini-heart';
+        s.textContent = pool[Math.floor(Math.random() * pool.length)];
+        s.style.setProperty('--x', (5 + Math.random() * 90).toFixed(2) + '%');
+        s.style.setProperty('--y', (5 + Math.random() * 90).toFixed(2) + '%');
+        s.style.setProperty('--d', (Math.random() * 3).toFixed(2) + 's');
+        s.style.fontSize = (0.7 + Math.random() * 0.6).toFixed(2) + 'rem';
+        c.appendChild(s);
+      }
+    });
+  })();
+
+  /* ============================================================
+     9. MUSIC — autoplay + first-gesture fallback
+     ============================================================ */
   (function musicPlayer() {
     const btn = document.getElementById('musicBtn');
     const audio = document.getElementById('bgMusic');
     if (!btn || !audio) return;
 
-    audio.volume = 0.75; // nice default, not too loud
+    audio.volume = 0.75;
 
-    let userPaused = false;   // true if the user deliberately paused
-    let gestureArmed = false; // whether we've attached the fallback listeners
+    let userPaused = false;
+    let gestureArmed = false;
 
     function setPlayingUI(isPlaying) {
       btn.classList.toggle('is-playing', isPlaying);
@@ -953,7 +2298,6 @@
       btn.title = isPlaying ? 'Pausar música' : 'Música';
     }
 
-    /* -------- manual toggle -------- */
     btn.addEventListener('click', () => {
       if (audio.paused) {
         userPaused = false;
@@ -967,7 +2311,6 @@
       }
     });
 
-    /* -------- keep UI in sync with the actual audio -------- */
     audio.addEventListener('play',  () => setPlayingUI(true));
     audio.addEventListener('pause', () => setPlayingUI(false));
     audio.addEventListener('ended', () => setPlayingUI(false));
@@ -976,24 +2319,18 @@
       console.warn('No se encontró el archivo de música. Coloca "tu-amo.mp3" junto a este HTML.');
     });
 
-    /* -------- autoplay attempt -------- */
     function tryAutoplay() {
       if (userPaused) return;
-
       const p = audio.play();
       if (p && typeof p.catch === 'function') {
-        p.then(() => {
-          /* success! audio 'play' event handles the UI */
-        }).catch(() => {
-          /* Blocked — invite the user to tap, and arm the
-             first-gesture fallback so music starts on its own. */
-          btn.classList.add('is-pending');
-          armGestureFallback();
-        });
+        p.then(() => { /* audio 'play' event handles the UI */ })
+         .catch(() => {
+           btn.classList.add('is-pending');
+           armGestureFallback();
+         });
       }
     }
 
-    /* -------- first-interaction fallback -------- */
     const gestureEvents = ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'];
 
     function armGestureFallback() {
@@ -1001,13 +2338,10 @@
       gestureArmed = true;
 
       const startOnGesture = () => {
-        if (userPaused) {
-          cleanup();
-          return;
-        }
+        if (userPaused) { cleanup(); return; }
         const p = audio.play();
         if (p && typeof p.then === 'function') {
-          p.then(() => cleanup()).catch(() => { /* still blocked, keep waiting */ });
+          p.then(() => cleanup()).catch(() => { /* still blocked */ });
         } else {
           cleanup();
         }
@@ -1025,7 +2359,6 @@
       });
     }
 
-    /* -------- kick things off -------- */
     if (audio.readyState >= 2) {
       tryAutoplay();
     } else {
