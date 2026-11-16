@@ -285,7 +285,91 @@
   .section-ornament::before { background: linear-gradient(90deg, transparent, rgba(180, 110, 140, 0.6)); }
   .section-ornament::after  { background: linear-gradient(90deg, rgba(180, 110, 140, 0.6), transparent); }
 
-  /* Closing section — signature block */
+  /* =========================================================
+     NOVEMBER CHAPTER — warm autumn interlude
+     ========================================================= */
+  .november {
+    position: relative;
+    overflow: hidden;
+    margin: 40px 0 34px;
+    padding: clamp(30px, 5vw, 46px) clamp(20px, 4vw, 34px);
+    border-radius: 22px;
+    border: 1px solid rgba(255, 178, 104, 0.30);
+    background:
+      radial-gradient(ellipse 130% 100% at 50% -20%, rgba(255, 176, 96, 0.18), transparent 70%),
+      radial-gradient(ellipse 110% 90% at 50% 120%, rgba(196, 82, 58, 0.16), transparent 70%),
+      linear-gradient(168deg, rgba(94, 34, 24, 0.55) 0%, rgba(60, 20, 30, 0.55) 55%, rgba(38, 12, 22, 0.62) 100%);
+    box-shadow:
+      0 0 80px rgba(255, 150, 80, 0.12),
+      inset 0 0 70px rgba(255, 170, 100, 0.07);
+  }
+
+  .nov-leaves {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+  }
+  .nov-leaf {
+    position: absolute;
+    top: -26px;
+    opacity: 0;
+    animation: leafFall linear infinite;
+    will-change: transform, opacity;
+    filter: drop-shadow(0 0 6px rgba(255, 160, 80, 0.35));
+  }
+  @keyframes leafFall {
+    0%   { transform: translate3d(0, -30px, 0) rotate(0deg); opacity: 0; }
+    12%  { opacity: 0.85; }
+    85%  { opacity: 0.85; }
+    100% { transform: translate3d(var(--drift, 0px), 460px, 0) rotate(240deg); opacity: 0; }
+  }
+
+  .november > *:not(.nov-leaves) { position: relative; z-index: 1; }
+
+  .nov-label {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 0.68rem;
+    font-weight: 700;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: #ffb877;
+    text-align: center;
+    margin-bottom: 18px !important;
+    padding-left: 0.42em;
+    text-shadow: 0 0 18px rgba(255, 170, 90, 0.35);
+  }
+
+  .nov-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.25rem, 3.6vw, 1.6rem);
+    line-height: 1.9;
+    text-align: center;
+    color: #ffe0b4;
+    margin-bottom: 18px !important;
+    text-shadow: 0 0 34px rgba(255, 168, 88, 0.42);
+  }
+  .nov-quote .qm {
+    display: block;
+    font-size: 1.5em;
+    line-height: 0.6;
+    color: rgba(255, 186, 120, 0.55);
+    margin-bottom: 12px;
+  }
+
+  .nov-note {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.98rem;
+    color: #d9a98f;
+    letter-spacing: 0.06em;
+    margin-bottom: 0 !important;
+  }
+
+  /* ---------- Closing section — signature block ---------- */
   .closing {
     text-align: center;
     margin-top: 40px;
@@ -390,6 +474,10 @@
       padding: 18px 18px;
       font-size: 1em;
     }
+    .november {
+      padding: 26px 18px;
+      border-radius: 18px;
+    }
     .back-btn { padding: 14px 30px; font-size: 0.98rem; }
   }
 
@@ -398,8 +486,10 @@
     .dust span,
     .ornament,
     .letter-page::before,
-    .closing .sig-heart { animation: none !important; }
+    .closing .sig-heart,
+    .nov-leaf { animation: none !important; }
     .letter-body p { opacity: 1 !important; transform: none !important; }
+    .nov-leaf { opacity: 0.5 !important; }
   }
 </style>
 </head>
@@ -490,6 +580,82 @@
         <em>Sabes, mi amor… eres la única variable<br>que hace que mi sistema biológico pierda el equilibrio.</em>
       </p>
 
+      <!-- ═══════════ NOVIEMBRE — la cita ═══════════ -->
+      <section class="november" aria-label="Noviembre">
+        <div class="nov-leaves" aria-hidden="true"></div>
+
+        <p class="nov-label">Noviembre</p>
+
+        <p class="nov-quote">
+          <span class="qm">❝</span>
+          Conocerte es, fue y seguirá siendo<br>
+          una de las mejores cosas<br>
+          que me pasó en la vida.
+        </p>
+
+        <p class="nov-note">— y lo digo con el corazón en la mano —</p>
+      </section>
+
+      <!-- ═══════════ LO QUE TAMBIÉN QUERÍA DECIRTE ═══════════ -->
+      <div class="section-ornament">🍂 ✦ 🍂</div>
+
+      <p class="nov-label">Lo que también quería decirte</p>
+
+      <p>
+        Estos días he estado viendo, con calma, todo lo que hemos vivido — y me he
+        dado cuenta de que <strong>hemos mejorado como pareja</strong>. En serio, me
+        gusta el rumbo que vamos tomando. Ya pasamos más tiempo juntos, y me encanta
+        la manera en que te preocupas por mí: esos mensajitos, ese "¿ya comiste?",
+        esa forma tuya de estar pendiente sin hacer ruido. Se siente bonito saber que
+        hay alguien que me piensa, y quiero que sepas que <em>yo también te pienso a ti</em>,
+        todo el día, en las cosas más pequeñas.
+      </p>
+
+      <p>
+        Así como tú te preocupas por mí, yo me preocupo por ti — y la verdad es que
+        <strong>tengo miedo de que algo te pase, mi niña</strong>. No es desconfianza,
+        es que ahora que te quiero tanto, cualquier cosa que te pase me duele a mí
+        también. Por eso te pido, de corazón: cuídate, abrígate cuando haga frío,
+        come bien, descansa, no te exijas de más y ándate con cuidado, ¿sí? Porque
+        afuera hay mucho que puede lastimar y yo no siempre voy a poder estar ahí
+        para cubrirte — pero ten por seguro que <em>siempre voy a querer estarlo</em>.
+      </p>
+
+      <p class="insight">
+        Mi amor por ti no termina: <strong>es un amor sin fin</strong>.<br>
+        Y me da muchísimo gusto que estés en mi vida. 🍂
+      </p>
+
+      <p>
+        Perdóname por no entregarte dichas flores que te prometí — en serio.
+        No llegaron las flores que quería, las que ordené, y me enfadé y las cancelé.
+        Me frustró tanto que ni ganas tenía de contártelo… por eso hasta pena me da
+        mencionarte algo de flores estos días, y perdóname por eso. Sé que no era lo
+        que esperabas de mí, y te juro que no fue por falta de ganas ni mucho menos
+        por falta de amor: fue pura impotencia de no poder darte lo que quería darte.
+      </p>
+
+      <p>
+        Y aunque hoy no haya flores en tus manos, quiero que sepas que
+        <em>tú ya eres la flor más bonita de todo noviembre</em>. Pero te las debo,
+        y te las voy a dar: te prometo que esas flores van a llegar, aunque tenga
+        que ir yo mismo a buscarlas y llevártelas una por una, con el mismo cuidado
+        con el que te quiero.
+      </p>
+
+      <p>
+        En fin, nomás quería decirte que <strong>me encanta cómo eres</strong> — tu
+        risa, tu forma de ser, tu manera de querer, esa forma tuya de hacerme sentir
+        en casa — y que <strong>estoy orgulloso de ti</strong>, mi amor. De lo que
+        eres y de todo lo que estás construyendo, aunque a veces no te lo diga tanto
+        como debería.
+      </p>
+
+      <p class="opening" style="margin-top: 30px;">
+        Te amo mucho.<br>
+        <em>Cuídate, porfa.</em> 🍂
+      </p>
+
     </div>
 
     <!-- ─────────── Closing signature ─────────── -->
@@ -555,7 +721,32 @@
   })();
 
   /* =========================================================
-     3. PARAGRAPH REVEAL ON SCROLL
+     3. NOVEMBER LEAVES (autumn drift inside the quote block)
+     ========================================================= */
+  (function buildNovemberLeaves() {
+    const layers = document.querySelectorAll('.nov-leaves');
+    if (!layers.length) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    const pool = ['🍂', '🍁', '🍃', '✦'];
+
+    layers.forEach((layer) => {
+      for (let i = 0; i < 16; i++) {
+        const leaf = document.createElement('span');
+        leaf.className = 'nov-leaf';
+        leaf.textContent = pool[Math.floor(Math.random() * pool.length)];
+        leaf.style.left = Math.random() * 100 + '%';
+        leaf.style.fontSize = (9 + Math.random() * 12).toFixed(1) + 'px';
+        leaf.style.animationDelay    = (-Math.random() * 12).toFixed(2) + 's';
+        leaf.style.animationDuration = (9 + Math.random() * 9).toFixed(2) + 's';
+        leaf.style.setProperty('--drift', (Math.random() * 80 - 40).toFixed(0) + 'px');
+        layer.appendChild(leaf);
+      }
+    });
+  })();
+
+  /* =========================================================
+     4. PARAGRAPH REVEAL ON SCROLL
      ========================================================= */
   (function revealParagraphs() {
     const body = document.getElementById('letterBody');
